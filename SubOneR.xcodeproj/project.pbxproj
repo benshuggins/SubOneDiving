@@ -126,6 +126,7 @@
 				F56640252A58AE6900311C96 /* SubOneR.entitlements */,
 				F52E8E732A4D12F700E6CBBC /* SubOneR.xcdatamodeld */,
 				F52E8E652A4D128600E6CBBC /* SubOneRApp.swift */,
+				F52E8E762A4D133C00E6CBBC /* DataController.swift */,
 				F56640732A64776700311C96 /* Email */,
 				F56640762A6477AE00311C96 /* Extensions */,
 				F56147FF2A53505700B77A39 /* MainScreens */,
@@ -133,7 +134,6 @@
 				F56640E12A6DD2AB00311C96 /* PDF Stuff */,
 				F56147FE2A533E0400B77A39 /* Add Data Screens */,
 				F52E8E802A4E12A800E6CBBC /* FilteredListView.swift */,
-				F52E8E762A4D133C00E6CBBC /* DataController.swift */,
 				F52E8E692A4D128800E6CBBC /* Assets.xcassets */,
 				F52E8E6B2A4D128800E6CBBC /* Preview Content */,
 			);

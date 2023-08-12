@@ -51,18 +51,9 @@ struct AddCustomerView: View {
 				Section {
 					Button("Save") {
 						// add the book
-						let customer = Customer(context: moc)
-						customer.id = UUID()
-						customer.name = name
-						customer.marina = marina
-						customer.customerDes = customerDes
-						customer.slip = slip
-						customer.dateJoined = Date.now
-						 
-						if moc.hasChanges {
-							try? moc.save()
-						}
 						
+						DataController().addCustomer(name: name, marina: marina, customerDes: customerDes, slip: slip, moc: moc)
+
 						dismiss()
 					}
 					 .disabled(name.isEmpty)
