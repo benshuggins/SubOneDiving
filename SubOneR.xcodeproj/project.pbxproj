@@ -151,6 +151,7 @@
 		F56147FE2A533E0400B77A39 /* Add Data Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */,
 				F52E8E782A4D17D000E6CBBC /* AddCustomerView.swift */,
 				F56147FC2A532F9700B77A39 /* AddJobView.swift */,
 			);
@@ -171,7 +172,6 @@
 				F566402B2A58CB8500311C96 /* SignInView.swift */,
 				F56640EE2A6DD4AF00311C96 /* QuoteView.swift */,
 				F581B0CC2A8574D1003F7DFB /* StatusView.swift */,
-				F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */,
 			);
 			path = MainScreens;
 			sourceTree = "<group>";

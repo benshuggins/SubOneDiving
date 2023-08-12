@@ -52,7 +52,7 @@ struct AddCustomerView: View {
 					Button("Save") {
 						// add the book
 						
-						DataController().addCustomer(name: name, marina: marina, customerDes: customerDes, slip: slip, moc: moc)
+						DataController().addCustomer(name: name, marina: marina, customerDes: customerDes, slip: slip, vesselType: vesselType, moc: moc)
 
 						dismiss()
 					}

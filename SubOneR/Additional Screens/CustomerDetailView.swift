@@ -127,7 +127,7 @@ struct CustomerDetailView: View {
 			
 		}
 			.sheet(isPresented: $showEditCustomerView) {
-				EditCustomerView()
+				EditCustomerView(customer: customer)
 			}
 
     }

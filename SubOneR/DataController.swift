@@ -35,7 +35,7 @@ class DataController: ObservableObject {
 		
 	}
 	
-	func addCustomer(name: String, marina: String, customerDes: String, slip: String, moc: NSManagedObjectContext) {
+	func addCustomer(name: String, marina: String, customerDes: String, slip: String, vesselType: String, moc: NSManagedObjectContext) {
 		
 		let customer = Customer(context: moc)
 		customer.id = UUID()
@@ -43,6 +43,7 @@ class DataController: ObservableObject {
 		customer.marina = marina
 		customer.customerDes = customerDes
 		customer.slip = slip
+		customer.vesselType = vesselType
 		customer.dateJoined = Date.now
 		
 		if moc.hasChanges {
@@ -52,10 +53,17 @@ class DataController: ObservableObject {
 		//try? moc.save()
 	}
 	
-	func editCustomer(customer: Customer, name: String, slip: String, marina: String, gate: String, customerDes: String, vesselType: String, moc: NSManagedObjectContext) {
+	func editCustomer(customer: Customer, name: String, slip: String, marina: String, gate: String, customerDes: String, moc: NSManagedObjectContext) {
 		 
+		customer.name = name
+		customer.marina = marina
+		customer.customerDes = customerDes
+		customer.slip = slip
+	//	customer.vesselType = vesselType
 		
-		
+		if moc.hasChanges {
+			save(context: moc)
+		}
 	}
 }
 
