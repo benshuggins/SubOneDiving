@@ -14,9 +14,10 @@ struct CustomerDetailView: View {
 	@Environment(\.managedObjectContext) private var moc
 	@Environment(\.dismiss) var dismiss
 	@State private var showingDeleteAlert = false
-	@State private var showingJobView = false 
-	@State private var showingQuoteView = false
 	
+	
+	@State private var showingJobView = false
+	@State private var showingQuoteView = false
 	@State private var showEditCustomerView = false
 	
 	
@@ -74,9 +75,9 @@ struct CustomerDetailView: View {
 					}
 				}
 			}
-		NavigationLink(destination: CustomerJobView(customer: customer), isActive: $showingQuoteView) {
+		NavigationLink(destination: CustomerJobView(customer: customer), isActive: $showingJobView) {
 			Button(action: {showingJobView = true}) {
-				Text("Create Quote For: \(customer.wrappedName)")
+				Text("Job's: \(customer.wrappedName)")
 			}
 				.padding()
 				.background(.blue)
@@ -85,9 +86,9 @@ struct CustomerDetailView: View {
 			
 		}
 		
-		NavigationLink(destination: CustomerJobView(customer: customer), isActive: $showingJobView) {
-			Button(action: {showingJobView = true}) {
-				Text("Go to \(customer.wrappedName) Job's")
+		NavigationLink(destination: PdfQuoteStartView(customer: customer), isActive: $showingQuoteView) {
+			Button(action: {showingQuoteView = true}) {
+				Text("\(customer.wrappedName) Quotes")
 			}
 				.padding()
 				.background(.blue)
@@ -122,9 +123,6 @@ struct CustomerDetailView: View {
 					Label("Edit This Book", systemImage: "person.2.badge.gearshape.fill")
 				}
 			}
-			
-			
-			
 		}
 			.sheet(isPresented: $showEditCustomerView) {
 				EditCustomerView(customer: customer)
@@ -132,6 +130,8 @@ struct CustomerDetailView: View {
 
     }
 	
+	
+	// Need to move this to the dataController
 	func deleteBook() {
 		moc.delete(customer)
 		
