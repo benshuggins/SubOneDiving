@@ -33,7 +33,7 @@ struct CustomerJobView: View {
 							VStack(alignment: .leading) {
 								Text("Invoice #: \(job.invoice)")
 								Text(job.nameJob ?? "")
-								Text("Job Status:  \(job.status)")
+								Text("Job Status:  \(job.jobCurrentStatus ?? "")" )  
 								Text("Job Type: \(job.jobType ?? "")")
 								
 								if let startDate = job.startDate {

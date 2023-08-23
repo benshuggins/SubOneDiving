@@ -31,7 +31,6 @@ struct EditCustomerView: View {
 			TextField("\(customer.slip!)", text: $slip)
 		//	TextField("\(customer.gate!)" , text: $gate)
 			
-		
 				.onAppear {
 					name = customer.name!
 					marina = customer.marina!
@@ -50,13 +49,8 @@ struct EditCustomerView: View {
 				}
 				Spacer()
 			}
-			
-			
-			
-			
-			
-		}
-    }
+		} .navigationTitle("Edit \(name)")
+	}
 }
 
 //struct EditCustomerView_Previews: PreviewProvider {

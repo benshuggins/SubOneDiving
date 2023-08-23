@@ -15,5 +15,9 @@ public class Job: NSManagedObject {
 	public var unwrappedNameJob: String {
 				nameJob ?? "Unknown job name"
 			}
+	
+	public var unwrappedJobStatus: String {        // There is no job status that has been selected 
+			jobCurrentStatus ?? "No Job Status"
+	}
 
 }

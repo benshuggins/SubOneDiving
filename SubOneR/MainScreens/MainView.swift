@@ -24,10 +24,10 @@ struct MainView: View {
 					Label("Needs Work", systemImage: "sun.max.trianglebadge.exclamationmark")
 				}
 			
-			QuoteView()	
-				.tabItem {
-					Label("Quotes", systemImage: "text.quote")
-				}
+//			QuoteView()	
+//				.tabItem {
+//					Label("Quotes", systemImage: "text.quote")
+//				}
 			
 			HistoryView()
 				.tabItem {

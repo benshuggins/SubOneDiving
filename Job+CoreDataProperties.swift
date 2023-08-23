@@ -2,7 +2,7 @@
 //  Job+CoreDataProperties.swift
 //  SubOneR
 //
-//  Created by Ben Huggins on 8/12/23.
+//  Created by Ben Huggins on 8/15/23.
 //
 //
 
@@ -22,14 +22,8 @@ extension Job {
     @NSManaged public var nameJob: String?
     @NSManaged public var startDate: Date?
     @NSManaged public var status: Int16
+    @NSManaged public var jobCurrentStatus: String?
     @NSManaged public var origin: Customer?
-	
-	override public func awakeFromInsert() {
-			super.awakeFromInsert()
-			
-			setPrimitiveValue(Date.now, forKey: "endDate")
-		}
-
 
 }
 

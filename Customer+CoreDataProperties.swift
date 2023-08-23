@@ -2,7 +2,7 @@
 //  Customer+CoreDataProperties.swift
 //  SubOneR
 //
-//  Created by Ben Huggins on 8/12/23.
+//  Created by Ben Huggins on 8/15/23.
 //
 //
 

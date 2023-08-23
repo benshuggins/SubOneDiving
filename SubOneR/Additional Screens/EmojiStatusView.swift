@@ -13,13 +13,13 @@ struct EmojiStatusView: View {
 	   var body: some View {
 		   switch rating {
 		   case 1:
-			   Text("👹")
+			   Text("Quote Sent")
 		   case 2:
-			   Text("👹")
+			   Text("Quote Payment Recieved")
 		   case 3:
-			   Text("👹")
+			   Text("Job Started")
 		   case 4:
-			   Text("👹")
+			   Text("Job Payement Not Revieved")
 		   default:
 			   Text("👹")
 		   }

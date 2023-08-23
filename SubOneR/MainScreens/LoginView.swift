@@ -17,7 +17,6 @@ struct LoginView: View {
 	@AppStorage("lastName") var lastName: String = ""
 	@AppStorage("userId") var userId: String = ""
 	
-	
     var body: some View {
 		NavigationView {
 			VStack {

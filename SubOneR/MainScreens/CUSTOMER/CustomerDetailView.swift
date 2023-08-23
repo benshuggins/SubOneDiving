@@ -13,13 +13,11 @@ struct CustomerDetailView: View {
 	
 	@Environment(\.managedObjectContext) private var moc
 	@Environment(\.dismiss) var dismiss
+	
 	@State private var showingDeleteAlert = false
-	
-	
 	@State private var showingJobView = false
 	@State private var showingQuoteView = false
 	@State private var showEditCustomerView = false
-	
 	
 	@State var selectedItems: [PhotosPickerItem] = []
 	@State var data: Data?
@@ -75,25 +73,30 @@ struct CustomerDetailView: View {
 					}
 				}
 			}
-		NavigationLink(destination: CustomerJobView(customer: customer), isActive: $showingJobView) {
-			Button(action: {showingJobView = true}) {
-				Text("Job's: \(customer.wrappedName)")
-			}
-				.padding()
-				.background(.blue)
-				.accentColor(.white)
-				.cornerRadius(22)
+		HStack {
 			
-		}
-		
-		NavigationLink(destination: PdfQuoteStartView(customer: customer), isActive: $showingQuoteView) {
-			Button(action: {showingQuoteView = true}) {
-				Text("\(customer.wrappedName) Quotes")
-			}
+			NavigationLink(destination: QuoteDetailView(customer: customer), isActive: $showingQuoteView) {
+				Button(action: {showingQuoteView = true}) {
+					Text("QUOTES")
+				}
 				.padding()
 				.background(.blue)
 				.accentColor(.white)
 				.cornerRadius(22)
+				
+			}
+			NavigationLink(destination: CustomerJobView(customer: customer), isActive: $showingJobView) {
+				Button(action: {showingJobView = true}) {
+					Text("  JOBS  ")
+				}
+				.padding()
+				.background(.blue)
+				.accentColor(.white)
+				.cornerRadius(22)
+				
+			}
+			// Right here we jump to quote tableView just like job View
+			
 			
 		}
 		.navigationTitle("\(customer.wrappedName) Info")

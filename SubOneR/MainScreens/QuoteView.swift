@@ -11,6 +11,8 @@ struct QuoteView: View {
 	@Environment(\.managedObjectContext) var moc
 	@FetchRequest(sortDescriptors: [SortDescriptor(\.name), SortDescriptor(\.marina)]) var customers: FetchedResults<Customer>
 	
+	let customer: Customer
+	
 	var body: some View {
 		NavigationView {
 			List {
@@ -42,8 +44,8 @@ struct QuoteView: View {
 //		}
 //}
 
-struct QuoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuoteView()
-    }
-}
+//struct QuoteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        QuoteView()
+//    }
+//}

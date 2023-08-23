@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F52432942A8C15FF00D81F55 /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52432932A8C15FF00D81F55 /* QuoteDetailView.swift */; };
+		F52432962A8C1E1600D81F55 /* AddQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52432952A8C1E1600D81F55 /* AddQuoteView.swift */; };
 		F52E8E662A4D128600E6CBBC /* SubOneRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E8E652A4D128600E6CBBC /* SubOneRApp.swift */; };
 		F52E8E682A4D128600E6CBBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E8E672A4D128600E6CBBC /* ContentView.swift */; };
 		F52E8E6A2A4D128800E6CBBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52E8E692A4D128800E6CBBC /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F52432932A8C15FF00D81F55 /* QuoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetailView.swift; sourceTree = "<group>"; };
+		F52432952A8C1E1600D81F55 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteView.swift; sourceTree = "<group>"; };
 		F52E8E622A4D128600E6CBBC /* SubOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52E8E652A4D128600E6CBBC /* SubOneRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubOneRApp.swift; sourceTree = "<group>"; };
 		F52E8E672A4D128600E6CBBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,7 +137,6 @@
 				F56640202A58A76E00311C96 /* Additional Screens */,
 				F56640E12A6DD2AB00311C96 /* PDF Stuff */,
 				F56147FE2A533E0400B77A39 /* Add Data Screens */,
-				F52E8E802A4E12A800E6CBBC /* FilteredListView.swift */,
 				F52E8E692A4D128800E6CBBC /* Assets.xcassets */,
 				F52E8E6B2A4D128800E6CBBC /* Preview Content */,
 			);
@@ -151,9 +154,7 @@
 		F56147FE2A533E0400B77A39 /* Add Data Screens */ = {
 			isa = PBXGroup;
 			children = (
-				F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */,
-				F52E8E782A4D17D000E6CBBC /* AddCustomerView.swift */,
-				F56147FC2A532F9700B77A39 /* AddJobView.swift */,
+				F52E8E802A4E12A800E6CBBC /* FilteredListView.swift */,
 			);
 			path = "Add Data Screens";
 			sourceTree = "<group>";
@@ -162,16 +163,16 @@
 			isa = PBXGroup;
 			children = (
 				F56640172A589DEF00311C96 /* MainView.swift */,
-				F56640262A58B18200311C96 /* LoginView.swift */,
-				F52E8E672A4D128600E6CBBC /* ContentView.swift */,
-				F52E8EC62A4FAA9100E6CBBC /* CustomerJobView.swift */,
-				F566401D2A58A6E900311C96 /* HistoryView.swift */,
-				F566401B2A58A0BE00311C96 /* TodayTaskView.swift */,
-				F56148002A536AC100B77A39 /* JobViewDetail.swift */,
-				F56640232A58A9C200311C96 /* AllCustomers.swift */,
-				F566402B2A58CB8500311C96 /* SignInView.swift */,
-				F56640EE2A6DD4AF00311C96 /* QuoteView.swift */,
+				F5CED94C2A96734D00383A43 /* CUSTOMER */,
+				F5CED94A2A96711B00383A43 /* JOB */,
+				F5CED94B2A96712800383A43 /* QUOTE */,
 				F581B0CC2A8574D1003F7DFB /* StatusView.swift */,
+				F566402B2A58CB8500311C96 /* SignInView.swift */,
+				F566401B2A58A0BE00311C96 /* TodayTaskView.swift */,
+				F566401D2A58A6E900311C96 /* HistoryView.swift */,
+				F56640262A58B18200311C96 /* LoginView.swift */,
+				F56640232A58A9C200311C96 /* AllCustomers.swift */,
+				F56640EE2A6DD4AF00311C96 /* QuoteView.swift */,
 			);
 			path = MainScreens;
 			sourceTree = "<group>";
@@ -179,7 +180,6 @@
 		F56640202A58A76E00311C96 /* Additional Screens */ = {
 			isa = PBXGroup;
 			children = (
-				F52E8E7A2A4D311400E6CBBC /* CustomerDetailView.swift */,
 				F581B0D82A86F983003F7DFB /* EmojiStatusView.swift */,
 			);
 			path = "Additional Screens";
@@ -219,9 +219,39 @@
 				F56640E42A6DD2F500311C96 /* ShareView.swift */,
 				F56640E62A6DD30C00311C96 /* PdfViewUI.swift */,
 				F56640E82A6DD32200311C96 /* PdfPreviewView.swift */,
-				F56640192A58A09A00311C96 /* PdfQuoteStartView.swift */,
 			);
 			path = "PDF Stuff";
+			sourceTree = "<group>";
+		};
+		F5CED94A2A96711B00383A43 /* JOB */ = {
+			isa = PBXGroup;
+			children = (
+				F52E8EC62A4FAA9100E6CBBC /* CustomerJobView.swift */,
+				F56148002A536AC100B77A39 /* JobViewDetail.swift */,
+				F56147FC2A532F9700B77A39 /* AddJobView.swift */,
+			);
+			path = JOB;
+			sourceTree = "<group>";
+		};
+		F5CED94B2A96712800383A43 /* QUOTE */ = {
+			isa = PBXGroup;
+			children = (
+				F52432932A8C15FF00D81F55 /* QuoteDetailView.swift */,
+				F52432952A8C1E1600D81F55 /* AddQuoteView.swift */,
+				F56640192A58A09A00311C96 /* PdfQuoteStartView.swift */,
+			);
+			path = QUOTE;
+			sourceTree = "<group>";
+		};
+		F5CED94C2A96734D00383A43 /* CUSTOMER */ = {
+			isa = PBXGroup;
+			children = (
+				F52E8E672A4D128600E6CBBC /* ContentView.swift */,
+				F52E8E7A2A4D311400E6CBBC /* CustomerDetailView.swift */,
+				F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */,
+				F52E8E782A4D17D000E6CBBC /* AddCustomerView.swift */,
+			);
+			path = CUSTOMER;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,8 +352,10 @@
 				F566402C2A58CB8500311C96 /* SignInView.swift in Sources */,
 				F56640272A58B18200311C96 /* LoginView.swift in Sources */,
 				F566407A2A6477E400311C96 /* Bundle+Extension.swift in Sources */,
+				F52432962A8C1E1600D81F55 /* AddQuoteView.swift in Sources */,
 				F56640242A58A9C200311C96 /* AllCustomers.swift in Sources */,
 				F56640EF2A6DD4AF00311C96 /* QuoteView.swift in Sources */,
+				F52432942A8C15FF00D81F55 /* QuoteDetailView.swift in Sources */,
 				F56640E52A6DD2F500311C96 /* ShareView.swift in Sources */,
 				F52E8E662A4D128600E6CBBC /* SubOneRApp.swift in Sources */,
 				F581B0D92A86F983003F7DFB /* EmojiStatusView.swift in Sources */,
