@@ -30,7 +30,7 @@ public class Customer: NSManagedObject {
 	public var wrappedGate: String {
 		return gate ?? "No gate added"
 	}
-	
+	// returns an array of jobs attached to customers
 	public var jobArray: [Job] {
 		let set = job as? Set<Job> ?? []
 		return set.sorted {

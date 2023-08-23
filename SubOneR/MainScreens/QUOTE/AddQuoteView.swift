@@ -24,6 +24,8 @@ struct AddQuoteView: View {
 	@State private var status = 1                      // A Quote is status 1
 	@State private var jobStatus = ""
 	@State private var currentJobStatus = ""
+	
+	@Binding var needsRefresh: Bool
 
 	// Adds up all previous invoices and gives you a recommended invoice count
 	var invoiceCount: Int {
@@ -70,6 +72,7 @@ struct AddQuoteView: View {
 				Section {
 					Button("Save") {
 						
+						needsRefresh.toggle()
 						let job1 = Job(context: moc)
 						job1.nameJob = customer.wrappedName
 						job1.invoice = Int16(invoice) ?? 0

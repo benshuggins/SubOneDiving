@@ -95,10 +95,10 @@ struct AddJobView: View {
 	
 
 
-
+//
 //
 //struct AddJobView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        AddJobView()
+//		AddJobView(customer: Customer)
 //    }
 //}

@@ -16,6 +16,7 @@ struct QuoteDetailView: View {
 	@Environment(\.managedObjectContext) var moc
 	
 	@State private var showAddQuoteView = false
+	@State private var needsRefresh: Bool = false
 	
 	var body: some View {
 		List {
@@ -64,6 +65,8 @@ struct QuoteDetailView: View {
 //			.cornerRadius(22)
 //			
 //		}
+		.listStyle(PlainListStyle())
+		.accentColor(needsRefresh ? .white : .black)
 		.navigationTitle("\(customer.wrappedName) Quotes")
 		.navigationBarTitleDisplayMode(.inline)
 		.toolbar {
@@ -77,7 +80,7 @@ struct QuoteDetailView: View {
 			}
 		}
 		.sheet(isPresented: $showAddQuoteView) {
-			AddQuoteView(customer: customer)
+			AddQuoteView(customer: customer, needsRefresh: $needsRefresh)
 		}
 		
 	}
