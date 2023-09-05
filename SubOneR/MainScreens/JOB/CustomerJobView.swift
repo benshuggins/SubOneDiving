@@ -10,18 +10,44 @@ import CoreData
 
 struct CustomerJobView: View {
 	
-	let customer: Customer
+	var customer: Customer
 	
+//	@FetchRequest(sortDescriptors: [], predicate:  NSPredicate(format: "name = %@ && jobCurrentStatus = %@", "Quote", customer.name) var jobs: FetchedResults<Job>
+//
+//				  NSPredicate(format: "name = %@ && jobCurrentStatus = %@", "Quote", customer.name)
+				  
+//	let jobs = customer.job.jobCurrentStatus.filter {$0.jobCurrentStatus == "Job"}.first
+	
+	
+	
+	
+//	let request = NSFetchRequest(entityName: "SubOneR")
+//	let predicate = NSPredicate(format: "name == %@ && jobCurrentStatus == %@", "Job", customer.unwrappedNameJob)
+// request.predicate = predicate
+				  
 	@State private var showAddJobView = false
 	@Environment(\.managedObjectContext) var moc
 	@State private var addTodayTaskToggle = false
 	@State private var addCheck = false
 	
+	let jobStatusSelection = ["Quote", "Job"]
+	
+//	let jobOne: [Job]
+	
+//	for n in customer.jobArray {
+//		if n.jobCurrentStatus == "Job" {
+//			jobOne.append(n)
+//		}
+//	}
+//
 	
 	
     var body: some View {
+		
+		var jobTwo = customer.jobArray.filter {$0.jobCurrentStatus == "Job"}   // Filter by "Job"
+		
 		List {
-			ForEach(customer.jobArray, id: \.self) { job in
+			ForEach(jobTwo, id: \.self) { job in
 				NavigationLink {
 					JobViewDetail(job: job)
 				} label: {
@@ -52,30 +78,30 @@ struct CustomerJobView: View {
 			
 		}
 		.navigationTitle("\(customer.wrappedName) Jobs")
-			.navigationBarTitleDisplayMode(.inline)
-			.toolbar {
-				ToolbarItem(placement: .navigationBarLeading) {
-					EditButton()									
-				}
-				ToolbarItem() {
-					Button {
-						showAddJobView.toggle()
-					} label: {
-						Label("Add Job", systemImage: "plus")
-					}
+		.navigationBarTitleDisplayMode(.inline)
+		.toolbar {
+			ToolbarItem(placement: .navigationBarLeading) {
+				EditButton()
+			}
+			ToolbarItem() {
+				Button {
+					showAddJobView.toggle()
+				} label: {
+					Label("Add Job", systemImage: "plus")
 				}
 			}
-			.sheet(isPresented: $showAddJobView) {
-				AddJobView(customer: customer)
-			}
-		
+		}
+		.sheet(isPresented: $showAddJobView) {
+			AddJobView(customer: customer)          // In order to add a job we must pass it the singer
+		}
+	
     }
-	
-	func updateJobs() {
-		print("updateJobs")
-		
-	
-	}
+//
+//	func updateJobs() {
+//		print("updateJobs")
+//
+//
+//	}
 	
 	// Delete a job tied to a customer
 	func deleteJobs(at offsets: IndexSet) {

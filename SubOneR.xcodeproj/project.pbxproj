@@ -46,6 +46,7 @@
 		F581B0E72A883239003F7DFB /* Job+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0E32A883239003F7DFB /* Job+CoreDataProperties.swift */; };
 		F581B0E82A883239003F7DFB /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0E42A883239003F7DFB /* Customer+CoreDataClass.swift */; };
 		F581B0E92A883239003F7DFB /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0E52A883239003F7DFB /* Customer+CoreDataProperties.swift */; };
+		F5CED94E2A96A89600383A43 /* EditJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CED94D2A96A89600383A43 /* EditJobView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		F581B0E32A883239003F7DFB /* Job+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Job+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F581B0E42A883239003F7DFB /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F581B0E52A883239003F7DFB /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F5CED94D2A96A89600383A43 /* EditJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,10 +108,10 @@
 		F52E8E592A4D128600E6CBBC = {
 			isa = PBXGroup;
 			children = (
-				F581B0E22A883239003F7DFB /* Job+CoreDataClass.swift */,
-				F581B0E32A883239003F7DFB /* Job+CoreDataProperties.swift */,
 				F581B0E42A883239003F7DFB /* Customer+CoreDataClass.swift */,
 				F581B0E52A883239003F7DFB /* Customer+CoreDataProperties.swift */,
+				F581B0E22A883239003F7DFB /* Job+CoreDataClass.swift */,
+				F581B0E32A883239003F7DFB /* Job+CoreDataProperties.swift */,
 				F52E8E642A4D128600E6CBBC /* SubOneR */,
 				F52E8E632A4D128600E6CBBC /* Products */,
 			);
@@ -164,8 +166,8 @@
 			children = (
 				F56640172A589DEF00311C96 /* MainView.swift */,
 				F5CED94C2A96734D00383A43 /* CUSTOMER */,
-				F5CED94A2A96711B00383A43 /* JOB */,
 				F5CED94B2A96712800383A43 /* QUOTE */,
+				F5CED94A2A96711B00383A43 /* JOB */,
 				F581B0CC2A8574D1003F7DFB /* StatusView.swift */,
 				F566402B2A58CB8500311C96 /* SignInView.swift */,
 				F566401B2A58A0BE00311C96 /* TodayTaskView.swift */,
@@ -229,6 +231,7 @@
 				F52E8EC62A4FAA9100E6CBBC /* CustomerJobView.swift */,
 				F56148002A536AC100B77A39 /* JobViewDetail.swift */,
 				F56147FC2A532F9700B77A39 /* AddJobView.swift */,
+				F5CED94D2A96A89600383A43 /* EditJobView.swift */,
 			);
 			path = JOB;
 			sourceTree = "<group>";
@@ -248,8 +251,8 @@
 			children = (
 				F52E8E672A4D128600E6CBBC /* ContentView.swift */,
 				F52E8E7A2A4D311400E6CBBC /* CustomerDetailView.swift */,
-				F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */,
 				F52E8E782A4D17D000E6CBBC /* AddCustomerView.swift */,
+				F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */,
 			);
 			path = CUSTOMER;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				F56640E92A6DD32200311C96 /* PdfPreviewView.swift in Sources */,
 				F56640782A6477D100311C96 /* UIDevice+Extension.swift in Sources */,
 				F52E8E812A4E12A800E6CBBC /* FilteredListView.swift in Sources */,
+				F5CED94E2A96A89600383A43 /* EditJobView.swift in Sources */,
 				F566401E2A58A6E900311C96 /* HistoryView.swift in Sources */,
 				F581B0DD2A882BC6003F7DFB /* EditCustomerView.swift in Sources */,
 				F581B0CD2A8574D1003F7DFB /* StatusView.swift in Sources */,

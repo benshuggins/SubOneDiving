@@ -19,22 +19,33 @@ struct QuoteDetailView: View {
 	@State private var needsRefresh: Bool = false
 	
 	var body: some View {
+		
+		var quoteTwo = customer.jobArray.filter {$0.jobCurrentStatus == "Quote"}   // Filter by "Quote"
+		
 		List {
-			ForEach(customer.jobArray, id: \.self) { job in
+			ForEach(quoteTwo, id: \.self) { job in
 				NavigationLink {
 					//JobViewDetail(job: job)                    // This gets sent to PDF
-					PdfQuoteStartView(customer: customer)
+					PdfQuoteStartView(customer: customer, job: job)        // send in the customer and the job
 				} label: {
 					
 					VStack(alignment: .leading) {
 						
-						EmojiStatusView(rating: job.status)
+				//		EmojiStatusView(rating: job.status)
 						
 						VStack(alignment: .leading) {
 							Text("Invoice #: \(job.invoice)")
 							Text(job.nameJob ?? "")
-							Text("Job Status:  \(job.status)")
+						//	Text("Job Status:  \(job.status)")
+							
+						//	Text(job.jobCurrentStatus ?? "")
+							
+							Text("Status: \(job.jobCurrentStatus ?? "")")
+							
 							Text("Job Type: \(job.jobType ?? "")")
+							
+							
+							
 							
 							if let startDate = job.startDate {
 								Text("StartDate: \(startDate.formatted(date: .abbreviated, time: .omitted))")
@@ -80,7 +91,7 @@ struct QuoteDetailView: View {
 			}
 		}
 		.sheet(isPresented: $showAddQuoteView) {
-			AddQuoteView(customer: customer, needsRefresh: $needsRefresh)
+			AddQuoteView(customer: customer, needsRefresh: $needsRefresh)     // need to pass needsRefresh and the first data object 
 		}
 		
 	}

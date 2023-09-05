@@ -18,7 +18,6 @@ struct CustomerDetailView: View {
 	@State private var showingJobView = false
 	@State private var showingQuoteView = false
 	@State private var showEditCustomerView = false
-	
 	@State var selectedItems: [PhotosPickerItem] = []
 	@State var data: Data?
 	
@@ -123,12 +122,12 @@ struct CustomerDetailView: View {
 				Button {
 					showEditCustomerView = true
 				} label: {
-					Label("Edit This Book", systemImage: "person.2.badge.gearshape.fill")
+					Label("Edit Customer", systemImage: "person.2.badge.gearshape.fill")
 				}
 			}
 		}
 			.sheet(isPresented: $showEditCustomerView) {
-				EditCustomerView(customer: customer)
+				EditCustomerView(customer: customer)           // I am passing a customer 
 			}
 
     }

@@ -13,7 +13,7 @@ struct AddQuoteView: View {
 	@Environment(\.managedObjectContext) var moc
 	let customer: Customer
 	let jobTypes = ["Hull Cleaning w/o Anode change", "Hull cleaning with Anode change","Anode Change", "Dock Maintenance", "Marina Maintenace", "Propeller Work", "Salvage", "General", "Other", "Popeller Untangle", "Inspection"]
-	let jobStatusSelection = ["Quote no Payment", "Quote Payment Recieved", "Make Job", "Job Finished", "Payment Recieved"]
+	let jobStatusSelection = ["Quote", "Job"]
 	let date = Date.now
 	
 	@State private var jobName = ""
@@ -23,10 +23,10 @@ struct AddQuoteView: View {
 	@State private var completionDate = Date.now
 	@State private var status = 1                      // A Quote is status 1
 	@State private var jobStatus = ""
-	@State private var currentJobStatus = ""
+	@State private var jobCurrentStatus = "Quote"   // This starts life as a Quote
 	
 	@Binding var needsRefresh: Bool
-
+	
 	// Adds up all previous invoices and gives you a recommended invoice count
 	var invoiceCount: Int {
 		return customer.jobArray.count
@@ -36,8 +36,8 @@ struct AddQuoteView: View {
 		NavigationView {
 			Form {
 				Section {
-//					TextField("\(customer.wrappedName) ", text: $jobName)
-//						.textFieldStyle(.roundedBorder)
+					//					TextField("\(customer.wrappedName) ", text: $jobName)
+					//						.textFieldStyle(.roundedBorder)
 					Text("Name: \(customer.wrappedName)")
 					
 					TextField("Invoice #:\(invoiceCount) ", text: $invoice)
@@ -63,16 +63,20 @@ struct AddQuoteView: View {
 					}
 				}
 				Section {
-					Picker("Quote Status", selection: $currentJobStatus) {
-						ForEach(jobStatusSelection, id: \.self) {
-							Text($0)
-						}
-					}
+					
+					Text("Job Status: \(jobCurrentStatus)")   // This is set on quote
+					
+					//				Picker("Quote Status", selection: $currentJobStatus) {
+					//					ForEach(jobStatusSelection, id: \.self) {
+					//						Text($0)
+					//					}
 				}
+				
 				Section {
 					Button("Save") {
 						
 						needsRefresh.toggle()
+						
 						let job1 = Job(context: moc)
 						job1.nameJob = customer.wrappedName
 						job1.invoice = Int16(invoice) ?? 0
@@ -81,8 +85,11 @@ struct AddQuoteView: View {
 						job1.endDate = completionDate
 						job1.origin = customer //  Customer(context: moc) // attach to customer
 						job1.status = Int16(status)
+						job1.jobCurrentStatus = jobCurrentStatus
 						
 						try? moc.save()
+						
+						//					 Instance member 'createNewJob' cannot be used on type 'DataController'; did you mean to use a value of this type instead?
 						
 						dismiss()
 					}
@@ -90,7 +97,7 @@ struct AddQuoteView: View {
 			}
 			.navigationTitle("Add Quote")
 		}
-			}
-		
+	}
+	
 }
 

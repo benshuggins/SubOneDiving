@@ -36,7 +36,7 @@ struct PdfPreviewView  : View {
 	
 	// This converts to data which is then sent to the PDFViewUI() above
 	func pdfData() -> Data? {
-		return PdfCreator().pdfData(title: customer.wrappedName, body: customer.wrappedMarina, quote: quote)
+		return PdfCreator().pdfData(title: customer.wrappedName, body: customer.wrappedMarina, quote: quote)  // Here I can just pass in the job 
 	}
 }
 

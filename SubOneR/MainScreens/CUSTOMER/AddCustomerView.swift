@@ -22,6 +22,8 @@ struct AddCustomerView: View {
 	@State private var slip = ""
 	@State private var gate = ""
 	
+	@Binding var needsRefresh: Bool   // This is the refresh hack 
+	
     var body: some View {
 		NavigationView {
 			Form {
@@ -51,9 +53,10 @@ struct AddCustomerView: View {
 				Section {
 					Button("Save") {
 						// add the book
-						
+						needsRefresh.toggle()
 						DataController().addCustomer(name: name, marina: marina, customerDes: customerDes, slip: slip, vesselType: vesselType, moc: moc)
 
+							
 						dismiss()
 					}
 					 .disabled(name.isEmpty)
@@ -61,14 +64,12 @@ struct AddCustomerView: View {
 			}
 			.navigationTitle("Add a SubOne Client")
 			.navigationBarTitleDisplayMode(.inline)
-			
-			
 		}
     }
 }
-
-struct AddCustomerView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddCustomerView()
-    }
-}
+//
+//struct AddCustomerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddCustomerView()
+//    }
+//}

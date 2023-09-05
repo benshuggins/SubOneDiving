@@ -23,8 +23,8 @@ struct MainView: View {
 				.tabItem {
 					Label("Needs Work", systemImage: "sun.max.trianglebadge.exclamationmark")
 				}
-			
-//			QuoteView()	
+//			
+//			QuoteView()
 //				.tabItem {
 //					Label("Quotes", systemImage: "text.quote")
 //				}

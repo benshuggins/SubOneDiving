@@ -45,11 +45,15 @@ struct EditCustomerView: View {
 				Button("Submit") {
 					
 					DataController().editCustomer(customer: customer, name: name, slip: slip, marina: marina, gate: gate, customerDes: customerDes, moc: moc)
+					
+					
+			
 					dismiss()
 				}
 				Spacer()
 			}
-		} .navigationTitle("Edit \(name)")
+		}
+		.navigationTitle("Edit \(name)")
 	}
 }
 

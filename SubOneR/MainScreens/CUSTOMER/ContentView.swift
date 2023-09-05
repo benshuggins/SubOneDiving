@@ -14,8 +14,8 @@ struct ContentView: View {
 	@FetchRequest(sortDescriptors: [SortDescriptor(\.name), SortDescriptor(\.marina)]) var customers: FetchedResults<Customer>
 	@Environment(\.dismiss) var dismiss
 	
+	@State private var needsRefresh: Bool = false
 	@State private var showingAddScreen = false
-	
 	@State private var showingUpdateScreen = false
 	
     var body: some View {
@@ -44,12 +44,10 @@ struct ContentView: View {
 							Label("Add Customer", systemImage: "plus")
 						}
 					}
-				
 				}
 				.sheet(isPresented: $showingAddScreen) {
-					AddCustomerView()
+					AddCustomerView(needsRefresh: $needsRefresh)
 				}
-			
     }
 }
 	

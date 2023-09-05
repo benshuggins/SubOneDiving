@@ -27,6 +27,8 @@ struct JobViewDetail: View {
 	//	@State private var coralWorms = 0
 	
 	@State private var addCheck = false
+	
+	
 	@State private var anodeMaterialLeft: Double = 0
 	
 	@Environment(\.openURL) var openURL
