@@ -12,13 +12,16 @@ class DataController: ObservableObject {
 	
 	let container = NSPersistentContainer(name: "SubOneR")
 	
-	init() {
+	 init() {
+		container.viewContext.automaticallyMergesChangesFromParent = true   // save to parent context
+		container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 		container.loadPersistentStores { description, error in
-			if let error = error {
+			if let error {
 				print("Core Data failed to load: \(error.localizedDescription)")
 				return
 			}
-			self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+			
+			
 		}
 	}
 	
@@ -95,10 +98,12 @@ class DataController: ObservableObject {
 		
 	// Shouldn't edit anything related to this customer here 
 		
-	func editJob(customer: Customer, job: Job, jobCurrentStatus: String, quoteNumber: String, moc: NSManagedObjectContext) {     // this should be sent a job
+	func updateQuote(customer: Customer, job: Job, jobCurrentStatus: String, amount: Int, quoteNumber: String, moc: NSManagedObjectContext) {     // this should be sent a job
 			//	customer.vesselType = vesselType
 
 		job.jobCurrentStatus = jobCurrentStatus   // this changes quote status JOB/ QUOTE
+		job.amount = Int16(Int(amount))
+		
 
 
 			if moc.hasChanges {

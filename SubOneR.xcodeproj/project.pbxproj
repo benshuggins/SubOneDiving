@@ -10,7 +10,7 @@
 		F52432942A8C15FF00D81F55 /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52432932A8C15FF00D81F55 /* QuoteDetailView.swift */; };
 		F52432962A8C1E1600D81F55 /* AddQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52432952A8C1E1600D81F55 /* AddQuoteView.swift */; };
 		F52E8E662A4D128600E6CBBC /* SubOneRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E8E652A4D128600E6CBBC /* SubOneRApp.swift */; };
-		F52E8E682A4D128600E6CBBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E8E672A4D128600E6CBBC /* ContentView.swift */; };
+		F52E8E682A4D128600E6CBBC /* CustomerMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E8E672A4D128600E6CBBC /* CustomerMainView.swift */; };
 		F52E8E6A2A4D128800E6CBBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52E8E692A4D128800E6CBBC /* Assets.xcassets */; };
 		F52E8E6D2A4D128800E6CBBC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52E8E6C2A4D128800E6CBBC /* Preview Assets.xcassets */; };
 		F52E8E752A4D12F700E6CBBC /* SubOneR.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F52E8E732A4D12F700E6CBBC /* SubOneR.xcdatamodeld */; };
@@ -22,7 +22,7 @@
 		F56147FD2A532F9700B77A39 /* AddJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56147FC2A532F9700B77A39 /* AddJobView.swift */; };
 		F56148012A536AC100B77A39 /* JobViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56148002A536AC100B77A39 /* JobViewDetail.swift */; };
 		F56640182A589DEF00311C96 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640172A589DEF00311C96 /* MainView.swift */; };
-		F566401A2A58A09A00311C96 /* PdfQuoteStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640192A58A09A00311C96 /* PdfQuoteStartView.swift */; };
+		F566401A2A58A09A00311C96 /* PdfQuoteStartViewQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640192A58A09A00311C96 /* PdfQuoteStartViewQuote.swift */; };
 		F566401C2A58A0BE00311C96 /* TodayTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F566401B2A58A0BE00311C96 /* TodayTaskView.swift */; };
 		F566401E2A58A6E900311C96 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F566401D2A58A6E900311C96 /* HistoryView.swift */; };
 		F56640242A58A9C200311C96 /* AllCustomers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640232A58A9C200311C96 /* AllCustomers.swift */; };
@@ -38,7 +38,6 @@
 		F56640E52A6DD2F500311C96 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640E42A6DD2F500311C96 /* ShareView.swift */; };
 		F56640E72A6DD30C00311C96 /* PdfViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640E62A6DD30C00311C96 /* PdfViewUI.swift */; };
 		F56640E92A6DD32200311C96 /* PdfPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640E82A6DD32200311C96 /* PdfPreviewView.swift */; };
-		F56640EF2A6DD4AF00311C96 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56640EE2A6DD4AF00311C96 /* QuoteView.swift */; };
 		F581B0CD2A8574D1003F7DFB /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0CC2A8574D1003F7DFB /* StatusView.swift */; };
 		F581B0D92A86F983003F7DFB /* EmojiStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0D82A86F983003F7DFB /* EmojiStatusView.swift */; };
 		F581B0DD2A882BC6003F7DFB /* EditCustomerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */; };
@@ -47,6 +46,10 @@
 		F581B0E82A883239003F7DFB /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0E42A883239003F7DFB /* Customer+CoreDataClass.swift */; };
 		F581B0E92A883239003F7DFB /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F581B0E52A883239003F7DFB /* Customer+CoreDataProperties.swift */; };
 		F5CED94E2A96A89600383A43 /* EditJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CED94D2A96A89600383A43 /* EditJobView.swift */; };
+		F5FED9DF2AAADC9A0063B50A /* PdfJobStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FED9DE2AAADC9A0063B50A /* PdfJobStartView.swift */; };
+		F5FED9E12AABD3C60063B50A /* CustomerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FED9E02AABD3C60063B50A /* CustomerRowView.swift */; };
+		F5FED9E82AABF23D0063B50A /* PdfCreatorIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FED9E72AABF23D0063B50A /* PdfCreatorIR.swift */; };
+		F5FED9EB2AABF2DF0063B50A /* PdfPreviewIRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FED9EA2AABF2DF0063B50A /* PdfPreviewIRView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +57,7 @@
 		F52432952A8C1E1600D81F55 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteView.swift; sourceTree = "<group>"; };
 		F52E8E622A4D128600E6CBBC /* SubOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52E8E652A4D128600E6CBBC /* SubOneRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubOneRApp.swift; sourceTree = "<group>"; };
-		F52E8E672A4D128600E6CBBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F52E8E672A4D128600E6CBBC /* CustomerMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerMainView.swift; sourceTree = "<group>"; };
 		F52E8E692A4D128800E6CBBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F52E8E6C2A4D128800E6CBBC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F52E8E742A4D12F700E6CBBC /* SubOneR.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SubOneR.xcdatamodel; sourceTree = "<group>"; };
@@ -66,7 +69,7 @@
 		F56147FC2A532F9700B77A39 /* AddJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobView.swift; sourceTree = "<group>"; };
 		F56148002A536AC100B77A39 /* JobViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewDetail.swift; sourceTree = "<group>"; };
 		F56640172A589DEF00311C96 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		F56640192A58A09A00311C96 /* PdfQuoteStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfQuoteStartView.swift; sourceTree = "<group>"; };
+		F56640192A58A09A00311C96 /* PdfQuoteStartViewQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfQuoteStartViewQuote.swift; sourceTree = "<group>"; };
 		F566401B2A58A0BE00311C96 /* TodayTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTaskView.swift; sourceTree = "<group>"; };
 		F566401D2A58A6E900311C96 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		F56640232A58A9C200311C96 /* AllCustomers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCustomers.swift; sourceTree = "<group>"; };
@@ -83,7 +86,6 @@
 		F56640E42A6DD2F500311C96 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		F56640E62A6DD30C00311C96 /* PdfViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewUI.swift; sourceTree = "<group>"; };
 		F56640E82A6DD32200311C96 /* PdfPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfPreviewView.swift; sourceTree = "<group>"; };
-		F56640EE2A6DD4AF00311C96 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		F581B0CC2A8574D1003F7DFB /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		F581B0D82A86F983003F7DFB /* EmojiStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiStatusView.swift; sourceTree = "<group>"; };
 		F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCustomerView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,10 @@
 		F581B0E42A883239003F7DFB /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F581B0E52A883239003F7DFB /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F5CED94D2A96A89600383A43 /* EditJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJobView.swift; sourceTree = "<group>"; };
+		F5FED9DE2AAADC9A0063B50A /* PdfJobStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfJobStartView.swift; sourceTree = "<group>"; };
+		F5FED9E02AABD3C60063B50A /* CustomerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRowView.swift; sourceTree = "<group>"; };
+		F5FED9E72AABF23D0063B50A /* PdfCreatorIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfCreatorIR.swift; sourceTree = "<group>"; };
+		F5FED9EA2AABF2DF0063B50A /* PdfPreviewIRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfPreviewIRView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +143,6 @@
 				F56640762A6477AE00311C96 /* Extensions */,
 				F56147FF2A53505700B77A39 /* MainScreens */,
 				F56640202A58A76E00311C96 /* Additional Screens */,
-				F56640E12A6DD2AB00311C96 /* PDF Stuff */,
 				F56147FE2A533E0400B77A39 /* Add Data Screens */,
 				F52E8E692A4D128800E6CBBC /* Assets.xcassets */,
 				F52E8E6B2A4D128800E6CBBC /* Preview Content */,
@@ -165,16 +170,17 @@
 			isa = PBXGroup;
 			children = (
 				F56640172A589DEF00311C96 /* MainView.swift */,
-				F5CED94C2A96734D00383A43 /* CUSTOMER */,
-				F5CED94B2A96712800383A43 /* QUOTE */,
-				F5CED94A2A96711B00383A43 /* JOB */,
 				F581B0CC2A8574D1003F7DFB /* StatusView.swift */,
 				F566402B2A58CB8500311C96 /* SignInView.swift */,
 				F566401B2A58A0BE00311C96 /* TodayTaskView.swift */,
 				F566401D2A58A6E900311C96 /* HistoryView.swift */,
 				F56640262A58B18200311C96 /* LoginView.swift */,
 				F56640232A58A9C200311C96 /* AllCustomers.swift */,
-				F56640EE2A6DD4AF00311C96 /* QuoteView.swift */,
+				F5CED94C2A96734D00383A43 /* CUSTOMER */,
+				F5CED94B2A96712800383A43 /* QUOTE */,
+				F5CED94A2A96711B00383A43 /* JOB */,
+				F5FED9E92AABF24E0063B50A /* Pdf InspectionReport Stuff */,
+				F5FED9E52AABF11A0063B50A /* Pdf Quote Stuff */,
 			);
 			path = MainScreens;
 			sourceTree = "<group>";
@@ -214,17 +220,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		F56640E12A6DD2AB00311C96 /* PDF Stuff */ = {
-			isa = PBXGroup;
-			children = (
-				F56640E22A6DD2D200311C96 /* PdfCreator.swift */,
-				F56640E42A6DD2F500311C96 /* ShareView.swift */,
-				F56640E62A6DD30C00311C96 /* PdfViewUI.swift */,
-				F56640E82A6DD32200311C96 /* PdfPreviewView.swift */,
-			);
-			path = "PDF Stuff";
-			sourceTree = "<group>";
-		};
 		F5CED94A2A96711B00383A43 /* JOB */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +227,7 @@
 				F56148002A536AC100B77A39 /* JobViewDetail.swift */,
 				F56147FC2A532F9700B77A39 /* AddJobView.swift */,
 				F5CED94D2A96A89600383A43 /* EditJobView.swift */,
+				F5FED9DE2AAADC9A0063B50A /* PdfJobStartView.swift */,
 			);
 			path = JOB;
 			sourceTree = "<group>";
@@ -241,7 +237,7 @@
 			children = (
 				F52432932A8C15FF00D81F55 /* QuoteDetailView.swift */,
 				F52432952A8C1E1600D81F55 /* AddQuoteView.swift */,
-				F56640192A58A09A00311C96 /* PdfQuoteStartView.swift */,
+				F56640192A58A09A00311C96 /* PdfQuoteStartViewQuote.swift */,
 			);
 			path = QUOTE;
 			sourceTree = "<group>";
@@ -249,12 +245,33 @@
 		F5CED94C2A96734D00383A43 /* CUSTOMER */ = {
 			isa = PBXGroup;
 			children = (
-				F52E8E672A4D128600E6CBBC /* ContentView.swift */,
+				F52E8E672A4D128600E6CBBC /* CustomerMainView.swift */,
+				F5FED9E02AABD3C60063B50A /* CustomerRowView.swift */,
 				F52E8E7A2A4D311400E6CBBC /* CustomerDetailView.swift */,
 				F52E8E782A4D17D000E6CBBC /* AddCustomerView.swift */,
 				F581B0DC2A882BC6003F7DFB /* EditCustomerView.swift */,
 			);
 			path = CUSTOMER;
+			sourceTree = "<group>";
+		};
+		F5FED9E52AABF11A0063B50A /* Pdf Quote Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				F56640E82A6DD32200311C96 /* PdfPreviewView.swift */,
+				F56640E22A6DD2D200311C96 /* PdfCreator.swift */,
+				F56640E42A6DD2F500311C96 /* ShareView.swift */,
+				F56640E62A6DD30C00311C96 /* PdfViewUI.swift */,
+			);
+			path = "Pdf Quote Stuff";
+			sourceTree = "<group>";
+		};
+		F5FED9E92AABF24E0063B50A /* Pdf InspectionReport Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				F5FED9EA2AABF2DF0063B50A /* PdfPreviewIRView.swift */,
+				F5FED9E72AABF23D0063B50A /* PdfCreatorIR.swift */,
+			);
+			path = "Pdf InspectionReport Stuff";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,14 +348,17 @@
 				F52E8E792A4D17D000E6CBBC /* AddCustomerView.swift in Sources */,
 				F566401C2A58A0BE00311C96 /* TodayTaskView.swift in Sources */,
 				F566407C2A64787200311C96 /* MailView.swift in Sources */,
-				F566401A2A58A09A00311C96 /* PdfQuoteStartView.swift in Sources */,
+				F566401A2A58A09A00311C96 /* PdfQuoteStartViewQuote.swift in Sources */,
 				F56640E32A6DD2D200311C96 /* PdfCreator.swift in Sources */,
 				F52E8E752A4D12F700E6CBBC /* SubOneR.xcdatamodeld in Sources */,
 				F56640E92A6DD32200311C96 /* PdfPreviewView.swift in Sources */,
 				F56640782A6477D100311C96 /* UIDevice+Extension.swift in Sources */,
 				F52E8E812A4E12A800E6CBBC /* FilteredListView.swift in Sources */,
 				F5CED94E2A96A89600383A43 /* EditJobView.swift in Sources */,
+				F5FED9DF2AAADC9A0063B50A /* PdfJobStartView.swift in Sources */,
+				F5FED9E82AABF23D0063B50A /* PdfCreatorIR.swift in Sources */,
 				F566401E2A58A6E900311C96 /* HistoryView.swift in Sources */,
+				F5FED9E12AABD3C60063B50A /* CustomerRowView.swift in Sources */,
 				F581B0DD2A882BC6003F7DFB /* EditCustomerView.swift in Sources */,
 				F581B0CD2A8574D1003F7DFB /* StatusView.swift in Sources */,
 				F52E8E772A4D133C00E6CBBC /* DataController.swift in Sources */,
@@ -350,7 +370,7 @@
 				F56147FD2A532F9700B77A39 /* AddJobView.swift in Sources */,
 				F52E8EC72A4FAA9100E6CBBC /* CustomerJobView.swift in Sources */,
 				F56640802A647A3A00311C96 /* ExampleData.swift in Sources */,
-				F52E8E682A4D128600E6CBBC /* ContentView.swift in Sources */,
+				F52E8E682A4D128600E6CBBC /* CustomerMainView.swift in Sources */,
 				F581B0E62A883239003F7DFB /* Job+CoreDataClass.swift in Sources */,
 				F56148012A536AC100B77A39 /* JobViewDetail.swift in Sources */,
 				F566402C2A58CB8500311C96 /* SignInView.swift in Sources */,
@@ -358,13 +378,13 @@
 				F566407A2A6477E400311C96 /* Bundle+Extension.swift in Sources */,
 				F52432962A8C1E1600D81F55 /* AddQuoteView.swift in Sources */,
 				F56640242A58A9C200311C96 /* AllCustomers.swift in Sources */,
-				F56640EF2A6DD4AF00311C96 /* QuoteView.swift in Sources */,
 				F52432942A8C15FF00D81F55 /* QuoteDetailView.swift in Sources */,
 				F56640E52A6DD2F500311C96 /* ShareView.swift in Sources */,
 				F52E8E662A4D128600E6CBBC /* SubOneRApp.swift in Sources */,
 				F581B0D92A86F983003F7DFB /* EmojiStatusView.swift in Sources */,
 				F56640182A589DEF00311C96 /* MainView.swift in Sources */,
 				F52E8E7B2A4D311400E6CBBC /* CustomerDetailView.swift in Sources */,
+				F5FED9EB2AABF2DF0063B50A /* PdfPreviewIRView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

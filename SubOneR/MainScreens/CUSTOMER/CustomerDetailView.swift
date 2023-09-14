@@ -73,7 +73,7 @@ struct CustomerDetailView: View {
 				}
 			}
 		HStack {
-			
+		
 			NavigationLink(destination: QuoteDetailView(customer: customer), isActive: $showingQuoteView) {
 				Button(action: {showingQuoteView = true}) {
 					Text("QUOTES")

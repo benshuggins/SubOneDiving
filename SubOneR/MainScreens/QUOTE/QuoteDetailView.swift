@@ -3,8 +3,6 @@
 //  SubOneR
 //
 //  Created by Ben Huggins on 8/15/23.
-//
-
 // This has a list of created Quotes and allows you to store created Quotes that will become a job
 
 import SwiftUI
@@ -26,7 +24,7 @@ struct QuoteDetailView: View {
 			ForEach(quoteTwo, id: \.self) { job in
 				NavigationLink {
 					//JobViewDetail(job: job)                    // This gets sent to PDF
-					PdfQuoteStartView(customer: customer, job: job)        // send in the customer and the job
+					PdfQuoteStartViewQuote(customer: customer, job: job)        // send in the customer and the job
 				} label: {
 					
 					VStack(alignment: .leading) {
@@ -44,9 +42,6 @@ struct QuoteDetailView: View {
 							
 							Text("Job Type: \(job.jobType ?? "")")
 							
-							
-							
-							
 							if let startDate = job.startDate {
 								Text("StartDate: \(startDate.formatted(date: .abbreviated, time: .omitted))")
 							}
@@ -62,27 +57,13 @@ struct QuoteDetailView: View {
 			//.onDelete(perform: deleteJobs)
 			
 		}
-		
-		
-		
-//		
-//		NavigationLink(destination: PdfQuoteStartView(customer: customer), isActive: $showingQuoteView) {
-//			Button(action: {showingQuoteView = true}) {
-//				Text("\(customer.wrappedName) Quotes")
-//			}
-//			.padding()
-//			.background(.blue)
-//			.accentColor(.white)
-//			.cornerRadius(22)
-//			
-//		}
 		.listStyle(PlainListStyle())
 		.accentColor(needsRefresh ? .white : .black)
 		.navigationTitle("\(customer.wrappedName) Quotes")
 		.navigationBarTitleDisplayMode(.inline)
 		.toolbar {
 			
-			ToolbarItem() {
+			ToolbarItem(placement: .primaryAction) {
 				Button {
 					showAddQuoteView.toggle()
 				} label: {

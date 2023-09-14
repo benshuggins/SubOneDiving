@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Customer)
-public class Customer: NSManagedObject {
+public class Customer: NSManagedObject, Identifiable {
 	
 	public var wrappedName: String {
 		return name ?? "Name not given"

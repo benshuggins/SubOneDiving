@@ -15,7 +15,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
 		TabView {
-			ContentView()
+			CustomerMainView()
 				.tabItem {
 					Label("Customers", systemImage: "list.dash")
 				}

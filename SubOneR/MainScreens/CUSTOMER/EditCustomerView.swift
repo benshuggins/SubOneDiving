@@ -12,7 +12,9 @@ struct EditCustomerView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.dismiss) var dismiss
 	
-	var customer: FetchedResults<Customer>.Element
+	//var customer: FetchedResults<Customer>.Element
+	
+	@ObservedObject var customer: Customer
 	
 	@State private var name = ""
 	//@State private var rating = 3
@@ -24,11 +26,11 @@ struct EditCustomerView: View {
 	
     var body: some View {
 		Form {
-			TextField("\(customer.name!)", text: $name)
-			TextField("\(customer.marina!)", text: $marina)
+			TextField("Name: \(customer.name!)", text: $name)
+			TextField("Marina: \(customer.marina!)", text: $marina)
 			//TextField("\(customer.vesselType!)", text: $vesselType)
-			TextField("\(customer.customerDes!)", text: $customerDes)
-			TextField("\(customer.slip!)", text: $slip)
+			TextField("Description \(customer.customerDes!)", text: $customerDes)
+			TextField("Slip \(customer.slip!)", text: $slip)
 		//	TextField("\(customer.gate!)" , text: $gate)
 			
 				.onAppear {

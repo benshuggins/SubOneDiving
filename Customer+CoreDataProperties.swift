@@ -2,7 +2,7 @@
 //  Customer+CoreDataProperties.swift
 //  SubOneR
 //
-//  Created by Ben Huggins on 8/15/23.
+//  Created by Ben Huggins on 9/5/23.
 //
 //
 
@@ -46,6 +46,6 @@ extension Customer {
 
 }
 
-extension Customer : Identifiable {
-
-}
+//extension Customer : Identifiable {
+//
+//}

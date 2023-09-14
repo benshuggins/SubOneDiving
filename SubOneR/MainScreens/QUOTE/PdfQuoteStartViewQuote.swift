@@ -6,57 +6,40 @@
 //
 
 import SwiftUI
+import CoreData
 
+//struct MultilineTextFieldDescription: View {
+//	//@State private var description = ""
+//	@State private var quote = Quote()
+//
+//	var body: some View {
+//		TextField("Description", text: $quote.quoteDescription, axis: .vertical)
+//			.textFieldStyle(.roundedBorder)
+//	}
+//}
 
-struct MultilineTextFieldDescription: View {
-	//@State private var description = ""
-	@State private var quote = Quote()
-	
-	var body: some View {
-		TextField("Description", text: $quote.quoteDescription, axis: .vertical)
-			.textFieldStyle(.roundedBorder)
-	}
-}
-
-// Here I am creating a new Quote and passing that 
-struct Quote {
-	
-	 var quoteNumber = ""
-	 var quoteDate = Date.now
-	 var quoteDescription = ""
-	 var vessel: String = ""
-	 var cost = 0
-	 var locationVessel = ""
-}
-
-
-struct PdfQuoteStartView: View {
+struct PdfQuoteStartViewQuote: View {
 	
 	@Environment(\.managedObjectContext) var moc // have access to the moc
+	@Environment(\.dismiss) var dismiss
 		
-	let customer: Customer // I just took data from the customer
-	
-	let job: Job   // I just pass it a Job and wa la
-	
-	@State private var quote = Quote()     // instantiate a new quote, this needs to be removed. How does update work. 
-	
+	@ObservedObject var customer: Customer // I just took data from the customer
+	@ObservedObject var job: Job   // I just pass it a Job and wa la
+		
 	@State private var quoteNumber = ""
 	@State private var quoteDate = Date.now
 	@State private var quoteDescription = ""
 	@State private var vessel: String = ""
-	@State private var cost = 0
+	@State private var amount = 0
 	@State private var locationVessel = ""
 	
-	@State private var makeJobToggle = false
-	
 	let jobStatusSelection = ["Quote", "Job"]
-
-	@State private var jobCurrentStatus = ""
+	@State private var jobCurrentStatus = "Quote"
 
  var body: some View {
 	 
 		VStack {
-		  form()        
+		  formQuote()        
 		  buttons()
 		  Spacer()
 	   }
@@ -70,12 +53,10 @@ struct PdfQuoteStartView: View {
 //    }
 //}
 
-
-// This is where it is created and sent from
-extension PdfQuoteStartView {
-	public func form() -> some View {
+extension PdfQuoteStartViewQuote {
+	public func formQuote() -> some View {
 		Form {
-			Text(customer.wrappedName)     //
+			Text(customer.wrappedName)    
 			
 			TextField("Location/ Vessel", text: $vessel)
 			
@@ -85,32 +66,38 @@ extension PdfQuoteStartView {
 			
 			TextField("Invoice #", text: $quoteNumber)     // Here I update the invoice
 			
-			TextField("\(quote.quoteDate)", value: $quote.quoteDate, format: .dateTime)
+			TextField("\(quoteDate)", value: $quoteDate, format: .dateTime)
 			
-			
-			TextField("Description: ", text: $quote.quoteDescription, axis: .vertical)
+			TextField("Description: ", text: $quoteDescription, axis: .vertical)
 				.textFieldStyle(.roundedBorder)
 			
-			TextField("Amount", value: $quote.cost, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+		//	TextField("Amount: ", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+//
+//			TextField("Amount: \(job.amount)", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+//
+			Text("Amount: \(job.amount)")
+			TextField("\(job.amount)", value: $amount, format: .number )
 			
+			
+			// Why doesn't the status change ??
 			Section {
 				Picker("Quote Status", selection: $jobCurrentStatus) {
+					Text("").tag("") //basically added empty tag and it solve the case
 					ForEach(jobStatusSelection, id: \.self) {
 						Text($0)
 					}
 				}
 			}
-			
 		}
 		.padding(4)
 	}
 }
 // I am passing Customer 
-extension PdfQuoteStartView{
+extension PdfQuoteStartViewQuote{
 	private func buttons() -> some View {
 	   
 		HStack(spacing : 20) {
-			NavigationLink(destination : PdfPreviewView(customer: customer, quote: quote) ){   // Here I pass in both the new quote and the customer 
+			NavigationLink(destination : PdfPreviewView(customer: customer, job: job) ){   // Here I pass in both the new quote and the customer
 				
 				Text("Preview")
 				.padding(10)
@@ -144,8 +131,8 @@ extension PdfQuoteStartView{
 	
 	func updateJob() {
 	
-		DataController().editJob(customer: customer, job: job, jobCurrentStatus: jobCurrentStatus, quoteNumber: quoteNumber, moc: moc)
-			//dismiss()
+		DataController().updateQuote(customer: customer, job: job, jobCurrentStatus: jobCurrentStatus, amount: amount, quoteNumber: quoteNumber, moc: moc)
+			dismiss()
 		
 	}
 }

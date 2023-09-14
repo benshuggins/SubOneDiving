@@ -5,10 +5,17 @@
 //  Created by Ben Huggins on 6/28/23.
 //https://www.hackingwithswift.com/books/ios-swiftui/core-data-wrap-up
 
+// awake from insert to preset core data values
+// Manually writing CD models out with Computed Poperty Module set and with manual/none
+// Place preview in a NavigationStack to see
+// Navigation stack to push views to see title
+// subclass your views
+// .primary action for buttons to tell screen what is the main action 
+
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct CustomerMainView: View {
 	
 	@Environment(\.managedObjectContext) var moc
 	@FetchRequest(sortDescriptors: [SortDescriptor(\.name), SortDescriptor(\.marina)]) var customers: FetchedResults<Customer>
@@ -25,10 +32,7 @@ struct ContentView: View {
 					NavigationLink {
 						CustomerDetailView(customer: customer)
 					} label: {
-						VStack(alignment: .leading) {
-							Text(customer.wrappedName)
-							Text(customer.wrappedMarina) // why arent default values showing up?
-							}
+						CustomerRowView(customer: customer)
 					}
 				}
 				.onDelete(perform: deleteCustomers)
@@ -46,7 +50,9 @@ struct ContentView: View {
 					}
 				}
 				.sheet(isPresented: $showingAddScreen) {
-					AddCustomerView(needsRefresh: $needsRefresh)
+					NavigationStack {
+						AddCustomerView(needsRefresh: $needsRefresh)
+					}
 				}
     }
 }
@@ -70,6 +76,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CustomerMainView()
     }
 }

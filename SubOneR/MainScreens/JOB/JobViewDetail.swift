@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-// having pre entered images into assets would really help
+//This is the inspection report page 
 
 struct JobViewDetail: View {
 	
@@ -27,8 +27,6 @@ struct JobViewDetail: View {
 	//	@State private var coralWorms = 0
 	
 	@State private var addCheck = false
-	
-	
 	@State private var anodeMaterialLeft: Double = 0
 	
 	@Environment(\.openURL) var openURL

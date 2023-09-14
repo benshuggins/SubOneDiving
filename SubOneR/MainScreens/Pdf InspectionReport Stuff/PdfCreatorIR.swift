@@ -1,17 +1,16 @@
 //
-//  PdfCreator.swift
+//  PdfCreatorInspection.swift
 //  SubOneR
 //
-//  Created by Ben Huggins on 7/23/23.
-//
-
-
+//  Created by Ben Huggins on 9/8/23.
+//  INSPECTION REPORT 
 
 import Foundation
 import PDFKit
 
+
 // Default title and Body creator
-class PdfCreator : NSObject {
+class PdfCreatorIR : NSObject {
 	private var pageRect : CGRect
 	private var renderer : UIGraphicsPDFRenderer?
 
@@ -25,6 +24,8 @@ class PdfCreator : NSObject {
 		CGRect(x: 0, y: 0, width: (8.5 * 72.0), height: (11 * 72.0))) {
 	   
 		let format = UIGraphicsPDFRendererFormat()
+		
+		
 		let metaData = [kCGPDFContextTitle: "It's a PDF!",
 			kCGPDFContextAuthor: "TechChee"]
 
@@ -37,13 +38,13 @@ class PdfCreator : NSObject {
 }
 
 // This draws the PDF
-extension PdfCreator {
+extension PdfCreatorIR {
 	
 	// LEFT SIDE
 	private func addSubOneLogo(pageRect: CGRect, imageTop: CGFloat, image: UIImage) -> CGFloat {
 		// 1
-		let maxHeight = pageRect.height * 0.10
-		let maxWidth = pageRect.width * 0.25
+		let maxHeight = pageRect.height * 0.20   ///0.10
+		let maxWidth = pageRect.width * 0.25	// 0.25
 		// 2
 		let aspectWidth = maxWidth / image.size.width
 		let aspectHeight = maxHeight / image.size.height
@@ -57,23 +58,25 @@ extension PdfCreator {
 							 width: scaledWidth, height: scaledHeight)
 		// 5
 		image.draw(in: imageRect)
+	
 		return imageRect.origin.y + imageRect.size.height
 	}
 	
 	private func addInvoiceStaticText (){
-		let title = "Invoice"
-		let textRect = CGRect(x: 40, y: 150,
+		let title = "Inspection Report"
+		let textRect = CGRect(x: 180, y: 50,   // 150
 						 width: pageRect.width - 40 ,height: 40)
 		title.draw(in: textRect,
-			  withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 30)])
+				   withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30, weight: .thin)])
 	}
 	
 
 	private func addSubOneContact () {
 		
 		var str2 = """
-  415-840-4666
-  anthony@subonediving.com
+  SUB ONE DIVING INC
+  +1 415-840-4666
+  info@subonediving.com
   
   SUB ONE DIVING INC
   1784 SMITH AVE
@@ -193,13 +196,52 @@ extension PdfCreator {
 		quoteCost1.draw(in: textRect,
 			  withAttributes: attributes)
 	}
+	
+	// 1
+	private func drawTearOffs(_ drawContext: CGContext, pageRect: CGRect,
+					  tearOffY: CGFloat, numberTabs: Int) {
+	  // 2
+	  drawContext.saveGState()
+	  // 3
+	  drawContext.setLineWidth(2.0)
+
+	  // 4  // draw line accross page
+	  drawContext.move(to: CGPoint(x: 0, y: tearOffY))
+	  drawContext.addLine(to: CGPoint(x: pageRect.width, y: tearOffY))
+	  drawContext.strokePath()
+	  drawContext.restoreGState()
+
+	  // 5  draw dashed lines
+	  drawContext.saveGState()
+	  let dashLength = CGFloat(72.0 * 0.2)
+	  drawContext.setLineDash(phase: 0, lengths: [dashLength, dashLength])
+	  // 6
+	  let tabWidth = pageRect.width / CGFloat(numberTabs)
+	  for tearOffIndex in 1..<numberTabs {
+		// 7
+		let tabX = CGFloat(tearOffIndex) * tabWidth
+		drawContext.move(to: CGPoint(x: tabX, y: tearOffY))
+		drawContext.addLine(to: CGPoint(x: tabX, y: pageRect.height))
+		drawContext.strokePath()
+	  }
+	  // 7
+	  drawContext.restoreGState()
+	}
 }
 
-extension PdfCreator {
-	func pdfData( title : String, body: String, quote: Quote) -> Data? {
+
+
+// Here is where we add data about pdf
+extension PdfCreatorIR {
+	func pdfData( title : String, body: String, job: Job) -> Data? {
+//		let context = context.cgContext
+		
 		if let renderer = self.renderer {
+			
 
 			let data = renderer.pdfData  { ctx in
+				
+				let context = ctx.cgContext
 				ctx.beginPage()
 				
 				addSubOneLogo(pageRect: pageRect, imageTop: 60, image: imageLogo!)
@@ -208,11 +250,18 @@ extension PdfCreator {
 				
 				addName(title: title)
 				addMarina(body: body)
-				addQuoteDate(quoteDate: quote.quoteDate)
-				addQuoteNumber(quoteNumber: quote.quoteNumber)
+				addQuoteDate(quoteDate: job.startDate!)
+				addQuoteNumber(quoteNumber: "\(job.invoice)")
 				addInvoiceStaticText2()
-				addQuoteDescription(quoteDescription: quote.quoteDescription)
-				addQuoteCost(quoteCost: quote.cost)
+				addQuoteDescription(quoteDescription: job.description)
+				addQuoteCost(quoteCost: Int(job.amount))
+				
+//			let context = context.cgContext
+				drawTearOffs(context, pageRect: pageRect, tearOffY: pageRect.height * 4.0 / 5.0,
+							 numberTabs: 8)
+				
+				
+				
 			}
 			return data
 		}
@@ -220,20 +269,22 @@ extension PdfCreator {
 	}
 }
 
-extension PdfCreator {
+// Is this where pdf is created?
+
+extension PdfCreatorIR {
 	
-	func pdfDoc( title : String, body: String, quote: Quote ) -> PDFDocument? {
+	func pdfDoc( title : String, body: String, job: Job ) -> PDFDocument? {
 		
-		if let data = self.pdfData(title: title, body: body, quote: quote){
+		if let data = self.pdfData(title: title, body: body, job: job){
 			
-			return PDFDocument(data: data)
+			return PDFDocument(data: data)   // return a pdf document with data
 		}
 		
 		return nil
 	}
 }
 
-extension PdfCreator {
+extension PdfCreatorIR {
 	
 //	func addWaterMarkAtBottom(){
 //

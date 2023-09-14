@@ -22,17 +22,37 @@ struct AddCustomerView: View {
 	@State private var slip = ""
 	@State private var gate = ""
 	
+	@State private var phoneNumber = ""
+	@State private var email = ""
+	@State private var address = ""
+	
 	@Binding var needsRefresh: Bool   // This is the refresh hack 
 	
     var body: some View {
-		NavigationView {
+		//NavigationView {
 			Form {
 				Section {
 					TextField("Customer", text: $name)
-					TextField("Marina", text: $marina)
+						.keyboardType(.namePhonePad)
+				
 					
 				}
+				
+				Section("Contact") {
+					
+					TextField("Phone Number", text: $phoneNumber)
+						.keyboardType(.phonePad)
+					
+					TextField("Email", text: $email)
+						.keyboardType(.emailAddress)
+					
+					TextField("Address", text: $address)
+						
+				}
+				
+				
 				Section {
+					TextField("Marina", text: $marina)
 					TextField("Slip #", text: $slip)
 					TextField("Gate #", text: $gate)
 					
@@ -45,6 +65,7 @@ struct AddCustomerView: View {
 				}
 				Section {
 					TextEditor(text: $customerDes)
+						
 					//RatingView(rating: $rating)
 				} header: {
 					Text("Add customer Information")
@@ -56,7 +77,6 @@ struct AddCustomerView: View {
 						needsRefresh.toggle()
 						DataController().addCustomer(name: name, marina: marina, customerDes: customerDes, slip: slip, vesselType: vesselType, moc: moc)
 
-							
 						dismiss()
 					}
 					 .disabled(name.isEmpty)
@@ -64,12 +84,15 @@ struct AddCustomerView: View {
 			}
 			.navigationTitle("Add a SubOne Client")
 			.navigationBarTitleDisplayMode(.inline)
-		}
+		//}
     }
 }
-//
+
 //struct AddCustomerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddCustomerView()
-//    }
+//	static var previews: some View {
+//		NavigationStack {
+//			AddCustomerView()
+//
+//		}
+//	}
 //}

@@ -11,7 +11,7 @@ struct AddQuoteView: View {
 	
 	@Environment(\.dismiss) var dismiss
 	@Environment(\.managedObjectContext) var moc
-	let customer: Customer
+	@ObservedObject var customer: Customer
 	let jobTypes = ["Hull Cleaning w/o Anode change", "Hull cleaning with Anode change","Anode Change", "Dock Maintenance", "Marina Maintenace", "Propeller Work", "Salvage", "General", "Other", "Popeller Untangle", "Inspection"]
 	let jobStatusSelection = ["Quote", "Job"]
 	let date = Date.now

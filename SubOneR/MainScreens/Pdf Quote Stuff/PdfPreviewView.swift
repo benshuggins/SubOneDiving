@@ -9,14 +9,13 @@
 import Foundation
 import SwiftUI
 
-struct PdfPreviewView  : View {
+struct PdfPreviewView: View {
 
 	@Environment(\.managedObjectContext) var moc
 	@State private var showShareSheet : Bool = false
 	
 	let customer: Customer
-	let quote: Quote
-	//let quoteInvoice: String 
+	let job: Job
 	
 	var body: some View {
 		
@@ -36,7 +35,9 @@ struct PdfPreviewView  : View {
 	
 	// This converts to data which is then sent to the PDFViewUI() above
 	func pdfData() -> Data? {
-		return PdfCreator().pdfData(title: customer.wrappedName, body: customer.wrappedMarina, quote: quote)  // Here I can just pass in the job 
+		
+		
+		return PdfCreator().pdfData(title: customer.wrappedName, body: customer.wrappedMarina, job: job)  // Here I can just pass in the job
 	}
 }
 

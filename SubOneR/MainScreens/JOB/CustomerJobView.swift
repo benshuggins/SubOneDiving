@@ -49,12 +49,14 @@ struct CustomerJobView: View {
 		List {
 			ForEach(jobTwo, id: \.self) { job in
 				NavigationLink {
-					JobViewDetail(job: job)
+					//JobViewDetail(job: job)
+					
+					PdfJobStartView(customer: customer, job: job)
 				} label: {
 				
 					VStack(alignment: .leading) {
 						
-						EmojiStatusView(rating: job.status)
+					//	EmojiStatusView(rating: job.status)
 					
 							VStack(alignment: .leading) {
 								Text("Invoice #: \(job.invoice)")
@@ -68,8 +70,8 @@ struct CustomerJobView: View {
 								if let endDate = job.endDate {
 									Text("Completion Date: \(endDate.formatted(date: .abbreviated, time: .omitted))")
 								}
-								Toggle("Add to Today's Task", isOn: $addCheck)
-									.toggleStyle(.switch)
+//								Toggle("Add to Today's Task", isOn: $addCheck)
+//									.toggleStyle(.switch)
 						}
 					}
 				}
