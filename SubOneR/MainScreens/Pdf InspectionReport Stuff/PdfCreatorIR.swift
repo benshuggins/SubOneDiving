@@ -14,7 +14,8 @@ class PdfCreatorIR : NSObject {
 	private var pageRect : CGRect
 	private var renderer : UIGraphicsPDFRenderer?
 
-	let imageLogo = UIImage(named: "SubOneMain")
+	let subOneMainLogo = UIImage(named: "SubOneMain")
+	let boatDiagram = UIImage(named: "BoatDiagram")
 	/**
 	W: 8.5 inches * 72 DPI = 612 points
 	H: 11 inches * 72 DPI = 792 points
@@ -24,8 +25,7 @@ class PdfCreatorIR : NSObject {
 		CGRect(x: 0, y: 0, width: (8.5 * 72.0), height: (11 * 72.0))) {
 	   
 		let format = UIGraphicsPDFRendererFormat()
-		
-		
+
 		let metaData = [kCGPDFContextTitle: "It's a PDF!",
 			kCGPDFContextAuthor: "TechChee"]
 
@@ -62,23 +62,72 @@ extension PdfCreatorIR {
 		return imageRect.origin.y + imageRect.size.height
 	}
 	
-	private func addInvoiceStaticText (){
+	private func addBoatDiagram(pageRect: CGRect, imageTop: CGFloat, image: UIImage) -> CGFloat {
+		// 1
+		let maxHeight = pageRect.height * 0.30   //0.10  This changes the height and width of the logo
+		let maxWidth = pageRect.width * 0.30	// 0.25
+		// 2
+		let aspectWidth = maxWidth / image.size.width
+		let aspectHeight = maxHeight / image.size.height
+		let aspectRatio = min(aspectWidth, aspectHeight)
+		// 3
+		let scaledWidth = image.size.width * aspectRatio
+		let scaledHeight = image.size.height * aspectRatio
+		// 4
+	 // let imageX = (pageRect.width - scaledWidth) / 4.0
+		let imageRect = CGRect(x: 450, y: 90,
+							 width: scaledWidth, height: scaledHeight)
+		// 5
+		image.draw(in: imageRect)
+	
+		return imageRect.origin.y + imageRect.size.height
+	}
+	
+	private func addInspectionReportTitle (){
 		let title = "Inspection Report"
-		let textRect = CGRect(x: 180, y: 50,   // 150
-						 width: pageRect.width - 40 ,height: 40)
-		title.draw(in: textRect,
-				   withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30, weight: .thin)])
+		
+		let textRect = CGRect(x: 180, y: 50, width: pageRect.width - 40 ,height: 33)
+		title.draw(in: textRect, withAttributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30, weight: .thin)])
+	}
+	
+	// 1
+	private func drawTopBeautyLine(_ drawContext: CGContext, pageRect: CGRect,
+					  height: CGFloat) {
+	  // 2
+	  drawContext.saveGState()
+	  // 3
+	  drawContext.setLineWidth(2.0)
+
+	  // 4  // draw line accross page
+	  drawContext.move(to: CGPoint(x: 162, y: height))
+	  drawContext.addLine(to: CGPoint(x: pageRect.width - 50, y: height))
+	  drawContext.strokePath()
+	  drawContext.restoreGState()
+
+//	  // 5  draw dashed lines
+//	  drawContext.saveGState()
+//	  let dashLength = CGFloat(72.0 * 0.2)
+//	  drawContext.setLineDash(phase: 0, lengths: [dashLength, dashLength])
+//	  // 6
+//	  let tabWidth = pageRect.width / CGFloat(numberTabs)
+//	  for tearOffIndex in 1..<numberTabs {
+//		// 7
+//		let tabX = CGFloat(tearOffIndex) * tabWidth
+//		drawContext.move(to: CGPoint(x: tabX, y: tearOffY))
+//		drawContext.addLine(to: CGPoint(x: tabX, y: pageRect.height))
+//		drawContext.strokePath()
+//	  }
+	  // 7
+	  drawContext.restoreGState()
 	}
 	
 
 	private func addSubOneContact () {
 		
-		var str2 = """
+		let str2 = """
   SUB ONE DIVING INC
   +1 415-840-4666
   info@subonediving.com
-  
-  SUB ONE DIVING INC
   1784 SMITH AVE
   SAN JOSE, CA 95112
   """
@@ -89,58 +138,22 @@ extension PdfCreatorIR {
 		let attributes = [
 			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
 			NSAttributedString.Key.paragraphStyle: paragraphStyle,
-			NSAttributedString.Key.foregroundColor : UIColor.gray
-		]
+			NSAttributedString.Key.foregroundColor : UIColor.gray ]
 		
-		let bodyRect = CGRect(x: 40, y: 300,
-							  width: pageRect.width - 40 ,height: pageRect.height - 80)
+		let bodyRect = CGRect(x: 25, y: 150, width: pageRect.width - 40 ,height: pageRect.height - 80)
 		str2.draw(in: bodyRect, withAttributes: attributes)
 	}
 	
 	
-	// RIGHT SIDE
-	private func addName (title  : String ){
-		let textRect = CGRect(x: 340, y: 300,
-						 width: pageRect.width - 40 ,height: 40)
-		title.draw(in: textRect,
-			  withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
-	}
+	// NAME
+	private func addName(title: String){
 		
-	// Marina
-	private func addMarina (body : String) {
-		
-		let marina = "Marina: \(body)"
-		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.alignment = .justified
-		
-		let attributes = [
-			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15),
-			NSAttributedString.Key.paragraphStyle: paragraphStyle,
-			NSAttributedString.Key.foregroundColor : UIColor.gray
-		]
-		
-		let bodyRect = CGRect(x: 340, y: 320,
-							  width: pageRect.width - 40 ,height: pageRect.height - 80)
-		marina.draw(in: bodyRect, withAttributes: attributes)
+		let name = "INSPECTION PREPARED FOR: \(title)"
+		let textRect = CGRect(x: 175, y: 140, width: pageRect.width - 40 ,height: 40)
+		name.draw(in: textRect, withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)])
 	}
 	
-	private func addQuoteNumber(quoteNumber : String) {
-		
-		let quoteNumber1 = "Invoice #: \(quoteNumber)"
-		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.alignment = .justified
-		
-		let attributes = [
-			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15),
-			NSAttributedString.Key.paragraphStyle: paragraphStyle,
-			NSAttributedString.Key.foregroundColor : UIColor.gray
-		]
-		
-		let bodyRect = CGRect(x: 340, y: 340,
-							  width: pageRect.width - 40 ,height: pageRect.height - 80)
-		quoteNumber1.draw(in: bodyRect, withAttributes: attributes)
-	}
-	
+	// DATE			, set 15 points apart in y direction
 	private func addQuoteDate(quoteDate: Date ){
 		
 		var quoteDate1 = ""
@@ -148,85 +161,161 @@ extension PdfCreatorIR {
 		formatter2.dateStyle = .medium
 		quoteDate1 = formatter2.string(from: quoteDate)
 		
-		let attributes = [
-			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-			//NSAttributedString.Key.paragraphStyle: paragraphStyle,
-			NSAttributedString.Key.foregroundColor : UIColor.gray
-		]
+		let quoteDate2 = "DATE PERFORMED: \(quoteDate1)"
 		
-		let textRect = CGRect(x: 340, y: 360,
-						 width: pageRect.width - 40 ,height: 40)
-		quoteDate1.draw(in: textRect,
-			  withAttributes: attributes)
-	}
-	private func addInvoiceStaticText2 (){
-		let title = "Description"
-		let textRect = CGRect(x: 340, y: 400,
-						 width: pageRect.width - 40 ,height: 40)
-		title.draw(in: textRect,
-			  withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
-	}
-	
-	private func addQuoteDescription(quoteDescription: String){
-				
-		let attributes = [
-			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-			//NSAttributedString.Key.paragraphStyle: paragraphStyle,
-			NSAttributedString.Key.foregroundColor : UIColor.gray
-		]
+		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
+			//NSAttributedString.Key.foregroundColor : UIColor.gray
 		
-		let textRect = CGRect(x: 340, y: 420,
-						 width: pageRect.width - 40 ,height: 80)
-		quoteDescription.draw(in: textRect,
+		let textRect = CGRect(x: 175, y: 155, width: pageRect.width - 40 ,height: 40)
+		quoteDate2.draw(in: textRect,
 			  withAttributes: attributes)
 	}
 	
-	private func addQuoteCost(quoteCost: Int){
+		// INVOICE #
+	private func addQuoteNumber(quoteNumber : String) {
 		
-		let quoteCost1 = "$\(quoteCost)"
-				
-		let attributes = [
-			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-			//NSAttributedString.Key.paragraphStyle: paragraphStyle,
-			NSAttributedString.Key.foregroundColor : UIColor.gray
-		]
+		let quoteNumber1 = "INVOICE #: \(quoteNumber)"
+		let paragraphStyle = NSMutableParagraphStyle()
+		paragraphStyle.alignment = .justified
 		
-		let textRect = CGRect(x: 340, y: 550,
-						 width: pageRect.width - 40 ,height: 80)
-		quoteCost1.draw(in: textRect,
-			  withAttributes: attributes)
-	}
+		let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11),
+			NSAttributedString.Key.paragraphStyle: paragraphStyle]
 	
-	// 1
-	private func drawTearOffs(_ drawContext: CGContext, pageRect: CGRect,
-					  tearOffY: CGFloat, numberTabs: Int) {
-	  // 2
-	  drawContext.saveGState()
-	  // 3
-	  drawContext.setLineWidth(2.0)
+		let bodyRect = CGRect(x: 175, y: 170, width: pageRect.width - 40 ,height: pageRect.height - 80)
+		quoteNumber1.draw(in: bodyRect, withAttributes: attributes)
+	}
+		
+	// LOCATION
+	private func addMarina(body : String) {
+		let marina = "LOCATION: \(body)"
+		let paragraphStyle = NSMutableParagraphStyle()
+		paragraphStyle.alignment = .justified
+		
+		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11),
+			NSAttributedString.Key.paragraphStyle: paragraphStyle]
 
-	  // 4  // draw line accross page
-	  drawContext.move(to: CGPoint(x: 0, y: tearOffY))
-	  drawContext.addLine(to: CGPoint(x: pageRect.width, y: tearOffY))
-	  drawContext.strokePath()
-	  drawContext.restoreGState()
-
-	  // 5  draw dashed lines
-	  drawContext.saveGState()
-	  let dashLength = CGFloat(72.0 * 0.2)
-	  drawContext.setLineDash(phase: 0, lengths: [dashLength, dashLength])
-	  // 6
-	  let tabWidth = pageRect.width / CGFloat(numberTabs)
-	  for tearOffIndex in 1..<numberTabs {
-		// 7
-		let tabX = CGFloat(tearOffIndex) * tabWidth
-		drawContext.move(to: CGPoint(x: tabX, y: tearOffY))
-		drawContext.addLine(to: CGPoint(x: tabX, y: pageRect.height))
-		drawContext.strokePath()
-	  }
-	  // 7
-	  drawContext.restoreGState()
+		let bodyRect = CGRect(x: 175, y: 185, width: pageRect.width - 40 ,height: pageRect.height - 80)
+		marina.draw(in: bodyRect, withAttributes: attributes)
 	}
+	// Dive SuperVisor is N/A
+	private func addDiveSupervisor() {
+		
+		let diveSuperVisor = "DIVE SUPERVISOR: N/A"
+		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
+		let bodyRect = CGRect(x: 175, y: 200, width: pageRect.width - 40 ,height: pageRect.height - 80)
+		diveSuperVisor.draw(in: bodyRect, withAttributes: attributes)
+	}
+
+		// ADD DIVER
+	private func addDiver(diver: String) {
+		
+		let diveSuperVisor = "DIVER: \(diver) "
+		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
+		let bodyRect = CGRect(x: 175, y: 215, width: pageRect.width - 40 ,height: pageRect.height - 80)
+		diveSuperVisor.draw(in: bodyRect, withAttributes: attributes)
+	}
+	
+	private func addVessel(vessel: String) {
+		
+		let vessel = "VESSEL: \(vessel) "
+		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
+		let bodyRect = CGRect(x: 175, y: 230, width: pageRect.width - 40 ,height: pageRect.height - 80)
+		vessel.draw(in: bodyRect, withAttributes: attributes)
+	}
+
+	
+	private func addVesselType(vesselType: String) {
+		
+		let vesselType = "VESSEL: \(vesselType) "
+		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
+		let bodyRect = CGRect(x: 175, y: 245, width: pageRect.width - 40 ,height: pageRect.height - 80)
+		vesselType.draw(in: bodyRect, withAttributes: attributes)
+	}
+	
+	
+	private func lastHaulOut(haulOutDate: String) {
+		
+		let haulOutDate = "LAST HAUL-OUT DATE: \(haulOutDate)"
+		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
+		let bodyRect = CGRect(x: 175, y: 260, width: pageRect.width - 40 ,height: pageRect.height - 80)
+		haulOutDate.draw(in: bodyRect, withAttributes: attributes)
+	}
+	
+	private func addHullTitle(){
+		let title = "HULL"
+		
+		let textRect = CGRect(x: (pageRect.width/2)-40, y: 350, width: pageRect.width - 40 ,height: 33)
+		title.draw(in: textRect, withAttributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+	}
+	
+	private func drawBeautyBoxTitles(_ drawContext: CGContext, pageRect: CGRect,
+					  height: CGFloat) {
+		
+		guard let context = UIGraphicsGetCurrentContext() else { return }
+
+		context.saveGState()
+		defer { context.restoreGState() }
+		
+		let rect = CGRect(x: 10, y: 380, width: pageRect.width-40, height: 10)
+
+		let path = UIBezierPath(
+		  roundedRect: rect,
+		  byRoundingCorners: [.topLeft, .topRight],
+		  cornerRadii: CGSize(width: 4, height: 4)
+		)
+
+		context.setFillColor(UIColor.blue.cgColor)
+		context.addPath(path.cgPath)
+		context.closePath()
+		context.fillPath()
+		context.restoreGState()
+
+	}
+	private func addRunnningGearTitle(){
+		let title = "RUNNING GEAR"
+		
+		let textRect = CGRect(x: (pageRect.width/2)-70, y: 550, width: pageRect.width - 40 ,height: 33)
+		title.draw(in: textRect, withAttributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+	}
+	
+	
+	
+	
+	
+	
+	
+//
+//	private func addInvoiceStaticText2 (){
+//		let title = "Description"
+//		let textRect = CGRect(x: 340, y: 400, width: pageRect.width - 40 ,height: 40)
+//		title.draw(in: textRect, withAttributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
+//	}
+//
+//	private func addQuoteDescription(quoteDescription: String){
+//
+//		let attributes = [
+//			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+//			//NSAttributedString.Key.paragraphStyle: paragraphStyle,
+//			NSAttributedString.Key.foregroundColor : UIColor.gray
+//		]
+//
+//		let textRect = CGRect(x: 340, y: 420, width: pageRect.width - 40 ,height: 80)
+//		quoteDescription.draw(in: textRect, withAttributes: attributes)
+//	}
+//
+//	private func addQuoteCost(quoteCost: Int){
+//
+//		let quoteCost1 = "$\(quoteCost)"
+//
+//		let attributes = [
+//			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
+//			//NSAttributedString.Key.paragraphStyle: paragraphStyle,
+//			NSAttributedString.Key.foregroundColor : UIColor.gray
+//		]
+//
+//		let textRect = CGRect(x: 340, y: 550, width: pageRect.width - 40 ,height: 80)
+//		quoteCost1.draw(in: textRect, withAttributes: attributes)
+//	}
 }
 
 
@@ -244,23 +333,35 @@ extension PdfCreatorIR {
 				let context = ctx.cgContext
 				ctx.beginPage()
 				
-				addSubOneLogo(pageRect: pageRect, imageTop: 60, image: imageLogo!)
-				addInvoiceStaticText() // "Invoice"
-				addSubOneContact ()
+				addSubOneLogo(pageRect: pageRect, imageTop: 60, image: subOneMainLogo!)
+				addBoatDiagram(pageRect: pageRect, imageTop: 60, image: boatDiagram!)
+				
+				addInspectionReportTitle() // "Inspection Report"
+				addSubOneContact()
 				
 				addName(title: title)
+				addQuoteNumber(quoteNumber: "\(job.invoice)")
 				addMarina(body: body)
 				addQuoteDate(quoteDate: job.startDate!)
-				addQuoteNumber(quoteNumber: "\(job.invoice)")
-				addInvoiceStaticText2()
-				addQuoteDescription(quoteDescription: job.description)
-				addQuoteCost(quoteCost: Int(job.amount))
+				addDiveSupervisor()
+				addDiver(diver: "Anthony Saviano")
+				addVessel(vessel: "Ericsson 27'")
+				addVesselType(vesselType: "Sail")
+				lastHaulOut(haulOutDate: "JUN 2023")
 				
-//			let context = context.cgContext
-				drawTearOffs(context, pageRect: pageRect, tearOffY: pageRect.height * 4.0 / 5.0,
-							 numberTabs: 8)
+				addHullTitle()     // HULL
+				addRunnningGearTitle()  // RUNNING GEAR
 				
 				
+//				addInvoiceStaticText2()
+//				addQuoteDescription(quoteDescription: job.description)
+//				addQuoteCost(quoteCost: Int(job.amount))
+				
+				
+				// Needs to be drawn below
+				drawTopBeautyLine(context, pageRect: pageRect, height: 90) // pageRect.height - 300
+				
+				drawBeautyBoxTitles(context, pageRect: pageRect, height: 300)
 				
 			}
 			return data
