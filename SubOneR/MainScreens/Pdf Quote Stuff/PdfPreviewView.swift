@@ -23,6 +23,7 @@ struct PdfPreviewView: View {
 			PdfViewUI(data: pdfData())
 			shareButton()
 			Spacer()
+			
 		}
 		.navigationTitle(Text("Preview"))
 		.navigationBarTitleDisplayMode(.inline)

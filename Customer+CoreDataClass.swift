@@ -38,3 +38,18 @@ public class Customer: NSManagedObject, Identifiable {
 		}
 	}
 }
+
+// How to add sample data for Previews???
+
+extension Customer {
+	static let sampleData: [Customer] =
+	[
+	
+	Customer(
+	
+	
+	
+	]
+		
+	}
+

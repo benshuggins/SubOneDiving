@@ -110,10 +110,18 @@ class DataController: ObservableObject {
 				save(context: moc)
 			}
 		}
+	
+	
+	func updateJob(customer: Customer, job: Job, jobCurrentStatus: String, quoteNumber: String, moc: NSManagedObjectContext) {     // this should be sent a job
+			//	customer.vesselType = vesselType
+
+		job.jobCurrentStatus = jobCurrentStatus   // this changes quote status JOB/ QUOTE
+
 		
-		
-		
-		
+			if moc.hasChanges {
+				save(context: moc)
+			}
+		}
 	}
 	
 	

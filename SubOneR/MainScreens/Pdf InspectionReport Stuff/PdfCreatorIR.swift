@@ -103,25 +103,9 @@ extension PdfCreatorIR {
 	  drawContext.addLine(to: CGPoint(x: pageRect.width - 50, y: height))
 	  drawContext.strokePath()
 	  drawContext.restoreGState()
-
-//	  // 5  draw dashed lines
-//	  drawContext.saveGState()
-//	  let dashLength = CGFloat(72.0 * 0.2)
-//	  drawContext.setLineDash(phase: 0, lengths: [dashLength, dashLength])
-//	  // 6
-//	  let tabWidth = pageRect.width / CGFloat(numberTabs)
-//	  for tearOffIndex in 1..<numberTabs {
-//		// 7
-//		let tabX = CGFloat(tearOffIndex) * tabWidth
-//		drawContext.move(to: CGPoint(x: tabX, y: tearOffY))
-//		drawContext.addLine(to: CGPoint(x: tabX, y: pageRect.height))
-//		drawContext.strokePath()
-//	  }
-	  // 7
 	  drawContext.restoreGState()
 	}
 	
-
 	private func addSubOneContact () {
 		
 		let str2 = """
@@ -143,7 +127,6 @@ extension PdfCreatorIR {
 		let bodyRect = CGRect(x: 25, y: 150, width: pageRect.width - 40 ,height: pageRect.height - 80)
 		str2.draw(in: bodyRect, withAttributes: attributes)
 	}
-	
 	
 	// NAME
 	private func addName(title: String){
@@ -199,7 +182,6 @@ extension PdfCreatorIR {
 	}
 	// Dive SuperVisor is N/A
 	private func addDiveSupervisor() {
-		
 		let diveSuperVisor = "DIVE SUPERVISOR: N/A"
 		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
 		let bodyRect = CGRect(x: 175, y: 200, width: pageRect.width - 40 ,height: pageRect.height - 80)
@@ -208,7 +190,6 @@ extension PdfCreatorIR {
 
 		// ADD DIVER
 	private func addDiver(diver: String) {
-		
 		let diveSuperVisor = "DIVER: \(diver) "
 		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
 		let bodyRect = CGRect(x: 175, y: 215, width: pageRect.width - 40 ,height: pageRect.height - 80)
@@ -216,7 +197,6 @@ extension PdfCreatorIR {
 	}
 	
 	private func addVessel(vessel: String) {
-		
 		let vessel = "VESSEL: \(vessel) "
 		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
 		let bodyRect = CGRect(x: 175, y: 230, width: pageRect.width - 40 ,height: pageRect.height - 80)
@@ -225,7 +205,6 @@ extension PdfCreatorIR {
 
 	
 	private func addVesselType(vesselType: String) {
-		
 		let vesselType = "VESSEL: \(vesselType) "
 		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
 		let bodyRect = CGRect(x: 175, y: 245, width: pageRect.width - 40 ,height: pageRect.height - 80)
@@ -234,7 +213,6 @@ extension PdfCreatorIR {
 	
 	
 	private func lastHaulOut(haulOutDate: String) {
-		
 		let haulOutDate = "LAST HAUL-OUT DATE: \(haulOutDate)"
 		let attributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11)]
 		let bodyRect = CGRect(x: 175, y: 260, width: pageRect.width - 40 ,height: pageRect.height - 80)
@@ -248,29 +226,54 @@ extension PdfCreatorIR {
 		title.draw(in: textRect, withAttributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
 	}
 	
-	private func drawBeautyBoxTitles(_ drawContext: CGContext, pageRect: CGRect,
-					  height: CGFloat) {
+	
+	
+	
+	
+	private func drawBeautyBoxTitles(_ drawContext: CGContext, pageRect: CGRect, height: CGFloat) {
 		
 		guard let context = UIGraphicsGetCurrentContext() else { return }
-
 		context.saveGState()
 		defer { context.restoreGState() }
 		
-		let rect = CGRect(x: 10, y: 380, width: pageRect.width-40, height: 10)
+		let rect = CGRect(x: 10, y: 380, width: pageRect.width-40, height: 20)
 
 		let path = UIBezierPath(
 		  roundedRect: rect,
 		  byRoundingCorners: [.topLeft, .topRight],
 		  cornerRadii: CGSize(width: 4, height: 4)
 		)
-
-		context.setFillColor(UIColor.blue.cgColor)
+		
+		
+		let titleFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+		// 2
+		let titleAttributes: [NSAttributedString.Key: Any] =
+		  [NSAttributedString.Key.font: titleFont]
+		
+		let attributedPortTitle = NSAttributedString(string: "Port", attributes: titleAttributes)
+		
+		
+		attributedPortTitle.draw(in: rect)   // draw port in the title
+		
+		
+		
+		
+		
+		context.setFillColor(UIColor.lightGray.cgColor)
 		context.addPath(path.cgPath)
 		context.closePath()
 		context.fillPath()
+		
+//		let attributes = [
+//		   NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 72)
+//		 ]
+		
+		
 		context.restoreGState()
 
 	}
+	
+	
 	private func addRunnningGearTitle(){
 		let title = "RUNNING GEAR"
 		
@@ -280,6 +283,27 @@ extension PdfCreatorIR {
 	
 	
 	
+	// Just draws dotted lines
+	func drawDottedLine(_ drawContext: CGContext, pageRect: CGRect, tearOffY: CGFloat) {
+	  // 2
+	  drawContext.saveGState()
+	  drawContext.setLineWidth(2.0)
+	  // 3
+	  drawContext.move(to: CGPoint(x: 0, y: 370))
+	 drawContext.addLine(to: CGPoint(x: pageRect.width, y: 370))
+		let dashLength = CGFloat(72.0 * 0.05)
+		drawContext.setLineDash(phase: 0, lengths: [dashLength, dashLength])
+	  drawContext.strokePath()
+	  drawContext.restoreGState()
+	}
+	
+	
+	private func drawPortTitle() {
+		let text = "PORT"
+		let textRect = CGRect(x: 200, y: 380, width: pageRect.width - 40 ,height: 33)
+		text.draw(in: textRect, withAttributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold)])
+	}
+
 	
 	
 	
@@ -293,29 +317,6 @@ extension PdfCreatorIR {
 //
 //	private func addQuoteDescription(quoteDescription: String){
 //
-//		let attributes = [
-//			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-//			//NSAttributedString.Key.paragraphStyle: paragraphStyle,
-//			NSAttributedString.Key.foregroundColor : UIColor.gray
-//		]
-//
-//		let textRect = CGRect(x: 340, y: 420, width: pageRect.width - 40 ,height: 80)
-//		quoteDescription.draw(in: textRect, withAttributes: attributes)
-//	}
-//
-//	private func addQuoteCost(quoteCost: Int){
-//
-//		let quoteCost1 = "$\(quoteCost)"
-//
-//		let attributes = [
-//			NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),
-//			//NSAttributedString.Key.paragraphStyle: paragraphStyle,
-//			NSAttributedString.Key.foregroundColor : UIColor.gray
-//		]
-//
-//		let textRect = CGRect(x: 340, y: 550, width: pageRect.width - 40 ,height: 80)
-//		quoteCost1.draw(in: textRect, withAttributes: attributes)
-//	}
 }
 
 
@@ -326,8 +327,6 @@ extension PdfCreatorIR {
 //		let context = context.cgContext
 		
 		if let renderer = self.renderer {
-			
-
 			let data = renderer.pdfData  { ctx in
 				
 				let context = ctx.cgContext
@@ -350,6 +349,16 @@ extension PdfCreatorIR {
 				lastHaulOut(haulOutDate: "JUN 2023")
 				
 				addHullTitle()     // HULL
+				
+					drawPortTitle()   // Port title
+				
+				
+				
+				
+				
+				
+				
+				
 				addRunnningGearTitle()  // RUNNING GEAR
 				
 				
@@ -358,10 +367,16 @@ extension PdfCreatorIR {
 //				addQuoteCost(quoteCost: Int(job.amount))
 				
 				
-				// Needs to be drawn below
-				drawTopBeautyLine(context, pageRect: pageRect, height: 90) // pageRect.height - 300
+				//STATIC - MUST BE DRAWN BELOW?
+				drawTopBeautyLine(context, pageRect: pageRect, height: 90) // pageRect.height - 300  // why do I need to pass in context?
 				
-				drawBeautyBoxTitles(context, pageRect: pageRect, height: 300)
+				//drawBeautyBoxTitles(context, pageRect: pageRect, height: 300)
+			
+				drawDottedLine(context, pageRect: pageRect, tearOffY: pageRect.height * 4.0 / 5.0)
+				
+				//drawTearOffs2(context, pageRect: pageRect, tearOffY: pageRect.height * 4.0 / 5.0, numberTabs: 8)
+				
+			
 				
 			}
 			return data
@@ -373,14 +388,10 @@ extension PdfCreatorIR {
 // Is this where pdf is created?
 
 extension PdfCreatorIR {
-	
 	func pdfDoc( title : String, body: String, job: Job ) -> PDFDocument? {
-		
 		if let data = self.pdfData(title: title, body: body, job: job){
-			
 			return PDFDocument(data: data)   // return a pdf document with data
 		}
-		
 		return nil
 	}
 }
@@ -411,3 +422,45 @@ extension PdfCreatorIR {
 //		}
 //	}
 }
+
+
+//
+//
+//func drawTearOffs2(_ drawContext: CGContext, pageRect: CGRect, tearOffY: CGFloat, numberTabs: Int) {
+//  // 2
+//  drawContext.saveGState()
+//  drawContext.setLineWidth(2.0)
+//  // 3
+//
+//	let titleFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+//	// 2
+//	let titleAttributes: [NSAttributedString.Key: Any] =
+//	  [NSAttributedString.Key.font: titleFont]
+//
+//	let attributedPortTitle = NSAttributedString(string: "Port", attributes: titleAttributes)
+//
+//	let titleStringRect = CGRect(x: (pageRect.width) / 2.0,
+//								 y: 36, width: pageRect.width,
+//								 height: 50)
+//
+//
+//	attributedPortTitle.draw(in: titleStringRect)
+//
+////		let rect = CGRect(x: 10, y: 380, width: pageRect.width-40, height: 20)
+////
+////		let path = UIBezierPath(
+////		  roundedRect: rect,
+////		  byRoundingCorners: [.topLeft, .topRight],
+////		  cornerRadii: CGSize(width: 4, height: 4)
+////		)
+//
+//
+//
+//
+//  drawContext.move(to: CGPoint(x: 0, y: 370))
+// drawContext.addLine(to: CGPoint(x: pageRect.width, y: 370))
+//	let dashLength = CGFloat(72.0 * 0.05)
+//	drawContext.setLineDash(phase: 0, lengths: [dashLength, dashLength])
+//  drawContext.strokePath()
+// // drawContext.restoreGState()
+//}

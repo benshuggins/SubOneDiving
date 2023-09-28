@@ -7,6 +7,7 @@
 
 
 // Just add something to job
+// This View is right before creating a pdf
 
 import SwiftUI
 
@@ -22,11 +23,13 @@ struct PdfJobStartView: View {
 	@State private var quoteDate = Date.now
 	@State private var quoteDescription = ""
 	@State private var vessel: String = ""
-	@State private var amount = 0
+	//@State private var amount = 0
 	@State private var locationVessel = ""
 	
 	let jobStatusSelection = ["Quote", "Job"]
 	@State private var jobCurrentStatus = "Quote"
+	
+	@State private var thickness = ["1/64\"", "1/32\"", "1/16\"", "1/8\"", "1/4\"", "1/2\"", "1\"", "2\"", "3\""]
 
  var body: some View {
 	 
@@ -34,18 +37,20 @@ struct PdfJobStartView: View {
 		  formJob()
 		  buttonsJob()
 		  Spacer()
+		
+//			VStack {
+//
+//				Image("BoatDiagram")
+//
+//
+//
+//			}
 	   }
 	  .navigationTitle(Text("Create Inspection Report"))
 	  .navigationBarTitleDisplayMode(.inline)
 	}
 }
 
-
-//struct PdfJobStartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PdfJobStartView()
-//    }
-//}
 
 
 
@@ -67,22 +72,54 @@ extension PdfJobStartView {
 			TextField("Description: ", text: $quoteDescription, axis: .vertical)
 				.textFieldStyle(.roundedBorder)
 			
-		//	TextField("Amount: ", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-//
-//			TextField("Amount: \(job.amount)", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-//
-			Text("Amount: \(job.amount)")
-			TextField("\(job.amount)", value: $amount, format: .number )
-			
 			
 			// Why doesn't the status change ??
-			Section {
-				Picker("Quote Status", selection: $jobCurrentStatus) {
-					Text("").tag("") //basically added empty tag and it solve the case
-					ForEach(jobStatusSelection, id: \.self) {
-						Text($0)
+			
+			
+			Section("HULL PORT BOW") {
+					
+				Picker("Thick", selection: $thickness) {
+					
+						ForEach(thickness, id: \.self) {
+							Text($0)
+						}
 					}
-				}
+//
+//					Picker("Grow", selection: $thickness) {
+//						//Text("").tag("")
+//						ForEach(thickness, id: \.self) {
+//							Text($0)
+//						}
+//					}
+//
+//					Picker("Cover", selection: $thickness) {
+//						//Text("").tag("")
+//						ForEach(thickness, id: \.self) {
+//							Text($0)
+//						}
+//
+//				}
+					.pickerStyle(.segmented)
+			}
+			
+			
+			Section {
+			
+					Picker("Quote Status", selection: $jobCurrentStatus) {
+						Text("").tag("") //basically added empty tag and it solve the case
+						ForEach(jobStatusSelection, id: \.self) {
+							Text($0)
+						}
+					}
+					
+				
+			}
+			
+			
+			VStack {
+				
+				Image("BoatDiagram") // need to scale the boat image for UI
+
 			}
 		}
 		.padding(4)
@@ -103,7 +140,7 @@ extension PdfJobStartView {
 				.cornerRadius(20)
 			}
 
-			Button(action: {  }, label: {
+			Button(action: {  }, label: {  //DO we need?
 				Text("Clear")
 				.padding(10)
 				.frame(width: 100)
@@ -114,7 +151,7 @@ extension PdfJobStartView {
 			
 			
 			// This saves the
-			Button(action: { updateJob() }, label: {
+			Button(action: { updateJob() }, label: {   // Do we Need ? k
 				Text("Update")
 				.padding(10)
 				.frame(width: 100)
@@ -128,10 +165,14 @@ extension PdfJobStartView {
 	func updateJob() {
 		// Need to make a new function
 	
-		DataController().updateQuote(customer: customer, job: job, jobCurrentStatus: jobCurrentStatus, amount: amount, quoteNumber: quoteNumber, moc: moc)
+		DataController().updateJob(customer: customer, job: job, jobCurrentStatus: jobCurrentStatus, quoteNumber: quoteNumber, moc: moc)
 			dismiss()
-		
-		
-		
 	}
 }
+
+
+//struct PdfJobStartView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PdfJobStartView()
+//    }
+//}
